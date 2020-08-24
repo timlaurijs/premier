@@ -8,7 +8,7 @@ const premierFounders = [
     name: "Ivo",
     description: "Hi! I'm Ivo",
     imageUrl:
-      "https://ca.slack-edge.com/T0DK39WAJ-U014F48Q72P-34933f539eb8-512",
+      "https://avatars0.githubusercontent.com/u/66206483?s=400&u=c2a444fe4defb6454d8f0876bb6538ed653c2111&v=4",
   },
   {
     name: "Karem",
