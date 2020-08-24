@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import PremierFounder from "../components/PremierFounder";
 import axios from "axios";
+import { API_URL_QUOTES } from "../constants/constants";
 
 const premierFounders = [
   {
     name: "Ivo",
     description: "Hi! I'm Ivo",
     imageUrl:
-      "https://ca.slack-edge.com/T0DK39WAJ-U014F48Q72P-34933f539eb8-512",
+      "https://avatars0.githubusercontent.com/u/66206483?s=400&u=c2a444fe4defb6454d8f0876bb6538ed653c2111&v=4",
   },
   {
     name: "Karem",
@@ -43,8 +44,7 @@ export default function Homepage() {
 
   useEffect(() => {
     async function fetchQuote() {
-      const url = "https://type.fit/api/quotes";
-      const data = await axios.get(url);
+      const data = await axios.get(API_URL_QUOTES);
       const randomNumber = getRandomNumber(1, 1643);
       const randomQuote = data.data[randomNumber];
       setInspirationalQuote({ ...inspirationalQuote, ...randomQuote });
