@@ -9,6 +9,7 @@ export default function Navbar() {
       <NavLink to="/login">Login</NavLink>
       <NavLink to="/signup">Sign up</NavLink>
       <NavLink to="/motivation">Motivation</NavLink>
+      <NavLink to="/triviaquiz">Trivia Quiz</NavLink>
     </div>
   );
 }
