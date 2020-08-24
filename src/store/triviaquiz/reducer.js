@@ -7,10 +7,9 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_ANSWER: {
-      const { answer } = action.payload;
       return {
         ...state,
-        answers: [...answer],
+        answers: [...state.answers, action.payload],
       };
     }
     default:
