@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TriviaQuestion from "../components/TriviaQuestion";
 import axios from "axios";
 import { API_URL_TRIVIA_QUIZ } from "../constants/constants";
+import { Button } from "@material-ui/core";
 
 export default function TriviaQuiz() {
   const [tenQuestions, setTenQuestions] = useState([]);
@@ -16,7 +17,13 @@ export default function TriviaQuiz() {
   return (
     <div>
       <h1>Let's test your CS knowledge!</h1>
-      <button onClick={() => startNewQuiz()}>Start a new quiz</button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => startNewQuiz()}
+      >
+        Start a new quiz
+      </Button>
       {tenQuestions.map((question, index) => {
         return <TriviaQuestion key={index} question={question.question} />;
       })}

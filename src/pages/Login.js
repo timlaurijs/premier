@@ -1,27 +1,32 @@
-import React, { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { login } from "../store/user/actions"
-import { selectToken } from "../store/user/selectors"
-import { useHistory, Link } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
+// Redux store
+import { login } from "../store/user/actions";
+import { selectToken } from "../store/user/selectors";
+
+//Mui components
+import { Button } from "@material-ui/core";
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const dispatch = useDispatch()
-  const token = useSelector(selectToken)
-  const history = useHistory()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const history = useHistory();
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/")
+      history.push("/");
     }
-  }, [token, history])
+  }, [token, history]);
 
   const formHandler = (event) => {
-    event.preventDefault()
-    console.log(`email: ${email}, password: ${password}`)
-    dispatch(login(email, password))
-  }
+    event.preventDefault();
+    console.log(`email: ${email}, password: ${password}`);
+    dispatch(login(email, password));
+  };
   return (
     <div className="Login">
       <form onSubmit={formHandler}>
@@ -39,10 +44,13 @@ const Login = () => {
           placeholder="password"
           name="password"
         ></input>
-        <button type="submit"> Submit</button>
+        <Button variant="contained" color="primary" type="submit">
+          {" "}
+          Submit
+        </Button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
