@@ -78,7 +78,9 @@ export default function Homepage() {
       <p>
         <i>{inspirationalQuote.text}</i> - {inspirationalQuote.author}
       </p>
+
       <button>Sign Up</button>
+
       <button>Login</button>
     </div>
   );
