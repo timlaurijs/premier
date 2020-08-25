@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Homepage from "./pages/Homepage";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp"
 import CodingGame from "./pages/CodingGame";
 
 // Components
@@ -57,6 +58,7 @@ function App() {
           <Route exact path="/" component={Homepage} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
           <Route path="/motivation" component={Motivation} />
           <Route path="/triviaquiz" component={TriviaQuiz} />
         </Switch>
