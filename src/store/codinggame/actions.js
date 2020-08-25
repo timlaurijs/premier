@@ -1,7 +1,7 @@
-export const ADD_SHOPPING_CARD = "ADD_SHOPPING_CARD";
-export function Shoppingcard(productId) {
+export const LOAD_EXERCISE = "ADD_TEST_CASE";
+export function Codinggame(exercise) {
   return {
-    type: "ADD_SHOPPING_CARD",
-    payload: productId, //this is what we are sending in the action
+    type: "ADD_TEST_CASE",
+    payload: exercise, //this is what we are sending in the action
   };
 }
