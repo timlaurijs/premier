@@ -1,8 +1,8 @@
-import { combineReducers } from "redux"
-import user from "./user/reducer"
-import triviaquiz from "./triviaquiz/reducer";
+import { combineReducers } from "redux";
+import user from "./user/reducer";
+import questions from "./questions/reducer";
 
 export default combineReducers({
-    triviaquiz,
-    user,
+  questions,
+  user,
 });
