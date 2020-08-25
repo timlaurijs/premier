@@ -6,8 +6,20 @@ import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/javascript-hint";
 
 import React, { useState, useEffect } from "react";
-import { Controlled as CodeMirror } from "react-codemirror2";
+import { UnControlled as CodeMirror } from "react-codemirror2";
 
 export default function CodingGame() {
-  return <div>Hi code editor</div>;
+  return (
+    <div>
+      <CodeMirror
+        value="I ♥ react-codemirror2"
+        options={{
+          mode: "xml",
+          theme: "material",
+          lineNumbers: true,
+        }}
+        onChange={(editor, data, value) => {}}
+      />
+    </div>
+  );
 }
