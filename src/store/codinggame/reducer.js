@@ -1,8 +1,5 @@
 const initialState = {
-  exercise: [
-    "What is the value of b after console.log?",
-    "what is the correct data type for null",
-  ],
+  exercise: [],
 };
 
 export default function codingGameReducer(
