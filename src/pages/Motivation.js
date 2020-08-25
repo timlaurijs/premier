@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_URL_QUOTES } from "../constants/constants";
 import axios from "axios";
+import { Button } from "@material-ui/core";
 
 function getRandomNumber(min, max) {
   min = Math.ceil(min);
@@ -30,7 +31,9 @@ export default function Motivation() {
       <h1>
         <i>{inspirationalQuote.text}</i> - {inspirationalQuote.author}
       </h1>
-      <button onClick={() => fetchQuote()}>More motivation!</button>
+      <Button variant="contained" color="primary" onClick={() => fetchQuote()}>
+        More motivation!
+      </Button>
     </div>
   );
 }

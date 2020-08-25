@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PremierFounder from "../components/PremierFounder";
 import axios from "axios";
 import { API_URL_QUOTES } from "../constants/constants";
+import { Button } from "@material-ui/core";
 
 const premierFounders = [
   {
@@ -79,9 +80,13 @@ export default function Homepage() {
         <i>{inspirationalQuote.text}</i> - {inspirationalQuote.author}
       </p>
 
-      <button>Sign Up</button>
+      <Button variant="contained" color="primary">
+        Sign Up
+      </Button>
 
-      <button>Login</button>
+      <Button variant="contained" color="primary">
+        Login
+      </Button>
     </div>
   );
 }
