@@ -1,5 +1,5 @@
 import { apiUrl } from "../../config/constants"
-import { selectToken, selectUser } from "./selectors"
+import { selectToken } from "./selectors"
 import axios from "axios"
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
@@ -35,6 +35,32 @@ const loginSuccess = (userWithToken) => {
   }
 }
 export const logOut = () => ({ type: LOG_OUT })
+
+export const signUp = (name, email, password) => {
+  return async (dispatch, getState) => {
+    // dispatch(appLoading())
+    try {
+      const response = await axios.post(`${apiUrl}/signup`, {
+        name,
+        email,
+        password,
+      })
+
+      dispatch(loginSuccess(response.data))
+      // dispatch(showMessageWithTimeout("success", true, "account created"))
+      // dispatch(appDoneLoading())
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message)
+        // dispatch(setMessage("danger", true, error.response.data.message))
+      } else {
+        console.log(error.message)
+        // dispatch(setMessage("danger", true, error.message))
+      }
+      // dispatch(appDoneLoading())
+    }
+  }
+}
 
 export const getUserWithStoredToken = () => {
   return async (dispatch, getState) => {
