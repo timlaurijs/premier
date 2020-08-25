@@ -36,7 +36,7 @@ const loginSuccess = (userWithToken) => {
 }
 export const logOut = () => ({ type: LOG_OUT })
 
-export const signUp = (name, email, password, isArtist) => {
+export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
     // dispatch(appLoading())
     try {
@@ -44,7 +44,6 @@ export const signUp = (name, email, password, isArtist) => {
         name,
         email,
         password,
-        isArtist,
       })
 
       dispatch(loginSuccess(response.data))
