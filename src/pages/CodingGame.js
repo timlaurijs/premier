@@ -7,9 +7,11 @@ import "codemirror/addon/hint/javascript-hint";
 
 import React, { useState, useEffect } from "react";
 import { Controlled as CodeMirror } from "react-codemirror2";
-import { Codinggame } from "../store/codinggame/actions";
-import { useDispatch } from "react-redux";
+import { CodingGame } from "../store/codinggame/actions";
+import { useDispatch, useSelector } from "react-redux";
 import { equal } from "../equal";
+import { selectExercise } from "../store/codinggame/selector";
+import { Box, Button } from "@material-ui/core";
 
 const codeMirrorOptions = {
   theme: "material",
@@ -18,16 +20,19 @@ const codeMirrorOptions = {
   lineWrapping: true,
 };
 
-export default function CodingGame() {
+export default function CodingExercises() {
   const dispatch = useDispatch();
+  const exercises = useSelector(selectExercise);
   console.log("dispatch codinggame");
-
+  const [questions, setQuestions] = useState([]);
+  const [number, setNumber] = useState(1);
+  const [gameOver, setGameOver] = useState(true);
+  const TOTAL_QUESTIONS = 1;
   //Dispatch the action for coding game:
 
-  const addGameOnClick = (e) => {
-    e.preventDefault();
-    dispatch(Codinggame());
-  };
+  useEffect(() => {
+    dispatch(CodingGame());
+  }, []);
 
   const [code, setCode] = useState("//enter solution here");
   const exercise =
@@ -63,26 +68,59 @@ export default function CodingGame() {
     }
   };
 
+  const startGame = async () => {
+    setQuestions(exercises);
+  };
+
+  console.log(questions);
+
+  const nextQuestion = () => {
+    const nextQ = number + 1;
+    if (nextQ === TOTAL_QUESTIONS) {
+      setNumber(nextQ);
+    } else {
+      setGameOver(true);
+    }
+  };
+
   return (
     <div>
-      <h3>{exercise}</h3>
-      <CodeMirror
-        value={code}
-        options={{
-          mode: "javascript",
-          ...codeMirrorOptions,
-        }}
-        onBeforeChange={(editor, data, js) => {
-          setCode(js);
-        }}
-      />
-      <button
-        onClick={() => {
-          runCode(testCase);
-        }}
+      <Button
+        // startIcon={<PlayCircleOutlineRoundedIcon />}
+        variant="contained"
+        color="primary"
+        onClick={startGame}
       >
-        Test
-      </button>
+        Play
+      </Button>
+
+      {exercises.map((exercise) => {
+        return (
+          <div key={exercise.id}>
+            {" "}
+            <h1>{exercise.description}</h1>
+            <h3>{exercise.exercise}</h3>
+            <h3>{exercise.given}</h3>
+            <CodeMirror
+              value={exercise.given}
+              options={{
+                mode: "javascript",
+                ...codeMirrorOptions,
+              }}
+              onBeforeChange={(editor, data, js) => {
+                setCode(js);
+              }}
+            />
+            <button
+              onClick={() => {
+                runCode(testCase);
+              }}
+            >
+              Test
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 }
