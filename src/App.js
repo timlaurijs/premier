@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Homepage from "./pages/Homepage";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import CodingGame from "./pages/CodingGame";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -52,6 +53,7 @@ function App() {
         <Navbar darkMode={darkMode} set_darkMode={set_darkMode} />
         <Container disableGutters={true} maxWidth="xs"></Container>
         <Switch>
+          <Route exact path="/codinggame" component={CodingGame} />
           <Route exact path="/" component={Homepage} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/login" component={Login} />

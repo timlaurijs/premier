@@ -155,6 +155,21 @@ export default function Navbar(props) {
             triviaquiz
           </Button>
         </Tooltip>
+        <Tooltip
+          size="medium"
+          TransitionComponent={Fade}
+          TransitionProps={{ timeout: 600 }}
+          title="CODING-GAME"
+        >
+          <Button
+            variant="contained"
+            className={classes.button}
+            component={NavLink}
+            to="/codinggame"
+          >
+            Coding game
+          </Button>
+        </Tooltip>
       </Toolbar>
     </AppBar>
   );
