@@ -39,9 +39,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Navbar(props) {
   const classes = useStyles() // material ui classes
   const { imageUrl, token } = useSelector(selectUser)
-
-  console.log(imageUrl)
-
   const dispatch = useDispatch()
 
   function darkModeButton() {
@@ -86,7 +83,9 @@ export default function Navbar(props) {
           Log out
         </Button>
       </Tooltip>
-      <img src={imageUrl} style={{ height: "75px", padding: "5px" }}></img>
+      {imageUrl ? (
+        <img src={imageUrl} style={{ height: "75px", padding: "5px" }}></img>
+      ) : null}
     </>
   ) : (
     <>
