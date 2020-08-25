@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Homepage from "./pages/Homepage";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp"
+import SignUp from "./pages/SignUp";
 import CodingGame from "./pages/CodingGame";
 
 // Components
@@ -22,20 +22,22 @@ import { Paper, CssBaseline, Container } from "@material-ui/core";
 const lightTheme = createMuiTheme({
   palette: {
     primary: {
-      main: "#663366", // here you can change the NavBar and Button color ("primary")
-      dark: "#4d7966 ", // change the hover effect background color
+      main: "#DCAE1D", // here you can change the NavBar and Button color ("primary")
+      dark: "#4BB543 ", // change the hover effect background color
     },
     type: "light",
+    background: { paper: "#87CEFA" },
   },
 });
 
 const darkTheme = createMuiTheme({
   palette: {
     primary: {
-      main: "#800000", // here you can change the NavBar and Button color ("primary")
-      dark: "#000035", // change the hover effect background color
+      main: "#8076a3", // here you can change the NavBar and Button color ("primary")
+      dark: "#4BB543", // change the hover effect background color
     },
     type: "dark",
+    background: { paper: "#393939" },
   },
 });
 
@@ -49,10 +51,9 @@ function App() {
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Paper>
+      <Container disableGutters={true} maxWidth="xl">
         <CssBaseline />
         <Navbar darkMode={darkMode} set_darkMode={set_darkMode} />
-        <Container disableGutters={true} maxWidth="xs"></Container>
         <Switch>
           <Route exact path="/codinggame" component={CodingGame} />
           <Route exact path="/" component={Homepage} />
@@ -62,7 +63,7 @@ function App() {
           <Route path="/motivation" component={Motivation} />
           <Route path="/triviaquiz" component={TriviaQuiz} />
         </Switch>
-      </Paper>
+      </Container>
     </ThemeProvider>
   );
 }

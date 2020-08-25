@@ -1,10 +1,10 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 // store items
-import { selectUser } from "../store/user/selectors"
-import { logOut } from "../store/user/actions"
+import { selectUser } from "../store/user/selectors";
+import { logOut } from "../store/user/actions";
 
 // Material-ui components and icons
 import {
@@ -16,9 +16,9 @@ import {
   makeStyles,
   Tooltip,
   Fade,
-} from "@material-ui/core"
-import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp"
-import BeachAccessIcon from "@material-ui/icons/BeachAccess"
+} from "@material-ui/core";
+import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp";
+import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
@@ -34,12 +34,12 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#ffff00", // does not work with a backgound image set as a background
     },
   },
-}))
+}));
 
 export default function Navbar(props) {
-  const classes = useStyles() // material ui classes
-  const { imageUrl, token } = useSelector(selectUser)
-  const dispatch = useDispatch()
+  const classes = useStyles(); // material ui classes
+  const { imageUrl, token } = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   function darkModeButton() {
     if (props.darkMode) {
@@ -52,7 +52,7 @@ export default function Navbar(props) {
         >
           <WbSunnySharpIcon fontSize="small" />
         </IconButton>
-      )
+      );
     } else {
       return (
         <IconButton
@@ -63,7 +63,7 @@ export default function Navbar(props) {
         >
           <BeachAccessIcon fontSize="small" />
         </IconButton>
-      )
+      );
     }
   }
 
@@ -120,10 +120,10 @@ export default function Navbar(props) {
         </Button>
       </Tooltip>
     </>
-  )
+  );
 
   return (
-    <AppBar position="static">
+    <AppBar>
       <Toolbar>
         <Box>{darkModeButton()}</Box>
         {/* Tooltip can display the button name */}
@@ -205,5 +205,5 @@ export default function Navbar(props) {
         {loginLogoutControls}
       </Toolbar>
     </AppBar>
-  )
+  );
 }

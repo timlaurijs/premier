@@ -7,6 +7,8 @@ import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/javascript-hint";
 import { Controlled as CodeMirror } from "react-codemirror2";
 import { equal } from "../equal";
+import { Box, Button } from "@material-ui/core";
+import ComputerIcon from "@material-ui/icons/Computer";
 
 const codeMirrorOptions = {
   theme: "material",
@@ -44,11 +46,11 @@ export default function QuestionCard({ exercise }) {
   };
 
   return (
-    <div key={exercise.id}>
+    <Box p={3} key={exercise.id}>
       {" "}
-      <h1>{exercise.description}</h1>
-      <h3>{exercise.exercise}</h3>
-      <h3>{exercise.given}</h3>
+      <h3>{exercise.description}</h3>
+      <p>{exercise.exercise}</p>
+      <p>{exercise.given}</p>
       <CodeMirror
         value={code}
         options={{
@@ -60,13 +62,22 @@ export default function QuestionCard({ exercise }) {
           setCode(js);
         }}
       />
-      <button
+      <Button
+        endIcon={<ComputerIcon />}
+        style={{
+          marginTop: 20,
+          borderRadius: 100,
+          fontSize: 20,
+        }}
+        color="primary"
+        variant="contained"
         onClick={() => {
           runCode(exercise);
         }}
       >
+        {" "}
         Test
-      </button>
-    </div>
+      </Button>
+    </Box>
   );
 }

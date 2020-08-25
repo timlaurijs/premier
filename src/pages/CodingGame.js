@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { CodingGame } from "../store/codinggame/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectExercise } from "../store/codinggame/selector";
-import { Box, Button } from "@material-ui/core";
+import { Box, Grid, Paper } from "@material-ui/core";
+import AnswerCard from "../components/AnswerCard";
 
 export default function CodingExercises() {
   const dispatch = useDispatch();
@@ -36,19 +37,33 @@ export default function CodingExercises() {
   };
 
   return (
-    <div>
-      <Button
-        // startIcon={<PlayCircleOutlineRoundedIcon />}
-        variant="contained"
-        color="primary"
-        onClick={startGame}
-      >
-        Play
-      </Button>
-
+    <Box mt={10} style={{ fontSize: 20 }}>
+      <Grid container spacing={10}>
+        <Grid item xs={12}>
+          <h1
+            style={{
+              maxWidth: 300,
+              fontSize: 50,
+            }}
+          >
+            Level #1
+          </h1>
+        </Grid>
+      </Grid>
       {exercises.map((exercise) => {
-        return <ExerciseCard exercise={exercise} />;
+        return (
+          <Grid container spacing={10}>
+            <Grid item xs={12} sm={6}>
+              <Paper>
+                <ExerciseCard exercise={exercise} />
+              </Paper>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <AnswerCard />
+            </Grid>
+          </Grid>
+        );
       })}
-    </div>
+    </Box>
   );
 }

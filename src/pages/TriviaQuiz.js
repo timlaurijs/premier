@@ -130,7 +130,7 @@ const Questions = () => {
   };
 
   return (
-    <>
+    <Box mt={10} style={{ fontSize: 25 }}>
       <Typography className={classes.button} component="div">
         {!gameOver ? (
           <div className={classes.button}> Score: {score}</div>
@@ -187,7 +187,7 @@ const Questions = () => {
           </Button>
         ) : null}
       </Box>
-    </>
+    </Box>
   );
 };
 export default Questions;
