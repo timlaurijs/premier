@@ -57,8 +57,9 @@ export default function Homepage() {
     <Box mt={10} style={{ fontSize: 25 }}>
       <h1>Welcome to Premier Coding!</h1>
       <h2>Who are we?</h2>
-      <div
+      <Box
         style={{
+          boarderRadius: 100,
           width: "50vw",
           margin: "0 auto",
           display: "grid",
@@ -75,7 +76,7 @@ export default function Homepage() {
             />
           );
         })}
-      </div>
+      </Box>
       <p>
         <i>{inspirationalQuote.text}</i> - {inspirationalQuote.author}
       </p>

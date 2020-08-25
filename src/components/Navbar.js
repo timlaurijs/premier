@@ -18,7 +18,7 @@ import {
   Fade,
 } from "@material-ui/core";
 import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp";
-import BeachAccessIcon from "@material-ui/icons/BeachAccess";
+import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded";
 
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +50,7 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <WbSunnySharpIcon fontSize="small" />
+          <WbSunnySharpIcon fontSize="medium" />
         </IconButton>
       );
     } else {
@@ -61,7 +61,7 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <BeachAccessIcon fontSize="small" />
+          <Brightness3RoundedIcon fontSize="medium" />
         </IconButton>
       );
     }
@@ -84,7 +84,11 @@ export default function Navbar(props) {
         </Button>
       </Tooltip>
       {imageUrl ? (
-        <img src={imageUrl} style={{ height: "75px", padding: "5px" }}></img>
+        <img
+          src={imageUrl}
+          style={{ height: "75px", padding: "5px" }}
+          alt="userImage"
+        ></img>
       ) : null}
     </>
   ) : (
