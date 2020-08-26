@@ -48,7 +48,9 @@ export default function QuestionCard({ exercise }) {
   return (
     <Box p={3} key={exercise.id}>
       {" "}
-      <h3>{exercise.description}</h3>
+      <h3>
+        {exercise.id}.{""} {exercise.description}
+      </h3>
       <p>{exercise.exercise}</p>
       <p>{exercise.given}</p>
       <CodeMirror
