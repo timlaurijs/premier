@@ -19,7 +19,8 @@ const codeMirrorOptions = {
 
 export default function ExerciseCard(props) {
   const [code, setCode] = useState("");
-  const [output, setOutput] = useState("");
+  const [testOutput, setTestOutput] = useState("");
+  const [output, setOutput] = useState(0);
   const runCode = (exercise) => {
     console.log("exercise resp. given", exercise + props.given);
 
@@ -36,20 +37,28 @@ export default function ExerciseCard(props) {
       eval(codeToRun);
       if (!equal(submits, JSON.parse(props.answer))) {
         console.log("mistake");
-        setOutput(`Your code rendered ${submits}. Try again!`);
+        setTestOutput(`Your code rendered ${submits}. Try again!`);
       } else {
         console.log("success!");
-        setOutput("Well done!");
+        setOutput(1);
+        setTestOutput("Well done!");
       }
-      setCode("");
     } catch (error) {
       console.log(error);
     }
   };
 
+  const increaseScoreOrNot = () => {
+    props.callbackScore(output);
+    setOutput(0);
+    setTestOutput("");
+    setCode("");
+  };
+
+  console.log(output);
+
   return (
     <Box p={3} key={props.id}>
-      {" "}
       <h3>
         {props.id}.{""} {props.description}
       </h3>
@@ -68,7 +77,7 @@ export default function ExerciseCard(props) {
           setCode(js);
         }}
       />
-      <p>{output}</p>
+      <p>{testOutput}</p>
       <Button
         endIcon={<ComputerIcon />}
         style={{
@@ -80,12 +89,21 @@ export default function ExerciseCard(props) {
         variant="contained"
         onClick={() => {
           runCode(code);
-          // runCode(code);
-          //something goes wrong here!
         }}
       >
-        {" "}
         Test
+      </Button>
+      <Button
+        style={{
+          marginTop: 20,
+          borderRadius: 100,
+          fontSize: 20,
+        }}
+        color="primary"
+        variant="contained"
+        onClick={increaseScoreOrNot}
+      >
+        Submit
       </Button>
     </Box>
   );
