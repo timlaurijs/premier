@@ -56,8 +56,17 @@ export default function Homepage() {
 
   return (
     <Box mt={10} style={{ fontSize: 25 }}>
-      <h1>Welcome to Premier Coding!</h1>
-      <h2>Who are we?</h2>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h1>Welcome to Premier Coding!</h1>
+        <h2>Who are we?</h2>
+      </div>
+
       <Box
         style={{
           boarderRadius: 100,
@@ -65,6 +74,8 @@ export default function Homepage() {
           margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          padding: "10px",
+          border: "5px solid #800000",
         }}
       >
         {premierFounders.map((founder) => {
@@ -78,18 +89,26 @@ export default function Homepage() {
           );
         })}
       </Box>
-      <p>
+      <p style={{ margin: "50px" }}>
         <i>{inspirationalQuote.text}</i> - {inspirationalQuote.author}
       </p>
 
       <Link to="/signup">
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ margin: "30px", width: "100px", height: "50px" }}
+        >
           Sign Up
         </Button>
       </Link>
 
       <Link to="/login">
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ margin: "30px", width: "100px", height: "50px" }}
+        >
           Login
         </Button>
       </Link>

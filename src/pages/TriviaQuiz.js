@@ -141,7 +141,11 @@ const Questions = () => {
                 className={classes.button}
                 color="primary"
                 onClick={startTrivia}
-                style={{ width: "200", height: "75px" }}
+                style={{
+                  width: "250",
+                  height: "75px",
+                  marginLeft: "100px",
+                }}
               >
                 Play
               </Button>
