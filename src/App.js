@@ -23,7 +23,7 @@ const lightTheme = createMuiTheme({
   palette: {
     primary: {
       main: "#3B5598", // here you can change the NavBar and Button color ("primary")
-      dark: "#4BB543 ", // change the hover effect background color
+      dark: "#185a37 ", // change the hover effect background color
     },
     type: "light",
     background: { paper: "#7A9D96" },
@@ -34,7 +34,7 @@ const darkTheme = createMuiTheme({
   palette: {
     primary: {
       main: "#B00020", // here you can change the NavBar and Button color ("primary")
-      dark: "#4BB543", // change the hover effect background color
+      dark: "#185a37", // change the hover effect background color"
     },
     type: "dark",
   },

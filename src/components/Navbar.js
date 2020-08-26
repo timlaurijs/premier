@@ -50,7 +50,7 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <WbSunnySharpIcon fontSize="medium" />
+          <WbSunnySharpIcon fontSize="large" />
         </IconButton>
       );
     } else {
@@ -61,7 +61,7 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <Brightness3RoundedIcon fontSize="medium" />
+          <Brightness3RoundedIcon fontSize="large" />
         </IconButton>
       );
     }

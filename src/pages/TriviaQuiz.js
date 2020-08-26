@@ -11,7 +11,7 @@ import { selectQuestion } from "../store/questions/selectors";
 import { fetchQuestions } from "../store/questions/actions";
 
 // TypesScript types
-import { Button, Box, Typography, makeStyles } from "@material-ui/core";
+import { Button, Box, Typography, makeStyles, Grid } from "@material-ui/core";
 
 //MUI components
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
@@ -27,46 +27,22 @@ const useStyles = makeStyles({
   },
   card: {
     alignItems: "center",
-
+    fontSize: 15,
     square: "false",
   },
   title: {
     padding: 10,
     fontSize: 15,
-    fontStyle: "italic",
+
     fontWeight: "bold",
-    color: "#6BCAE2",
+    // color: "#6BCAE2",
     textAlign: "center",
     alignItems: "center",
   },
-  content: {
-    fontSize: 25,
-    padding: 10,
-    fontWeight: "bold",
-    color: "#ffff00",
-  },
-
   button: {
-    borderRadius: "50%",
-    fontSize: 12,
-    minWidth: 250,
-    margin: 5,
-    padding: 2,
-    fontWeight: "bold",
-  },
-  buttonStart: {
-    borderRadius: "30%",
-    fontSize: 50,
-    minWidth: 100,
-    margin: 10,
-    padding: 10,
-    fontWeight: "bold",
+    fontSize: 25,
 
-    "&:hover": {
-      color: "#f3ca20",
-      backgroundImage:
-        "url(https://image.freepik.com/free-photo/microprocessor-chipset-central-processor-unit-illumination-circuit_34645-889.jpg)",
-    },
+    fontWeight: "bold",
   },
 });
 
@@ -130,63 +106,67 @@ const Questions = () => {
   };
 
   return (
-    <Box mt={10} style={{ fontSize: 25 }}>
-      <Typography className={classes.button} component="div">
-        {!gameOver ? (
-          <div className={classes.button}> Score: {score}</div>
-        ) : null}
-      </Typography>
-      {!gameOver && (
-        <QuestionCard
-          questionNr={number + 1}
-          totalQuestions={TOTAL_QUESTIONS}
-          question={questions[number].question}
-          answers={questions[number].answers}
-          userAnswer={userAnswers ? userAnswers[number] : undefined}
-          callback={checkAnswer}
-        />
-      )}
+    <Box className={classes.title} mt={10}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Typography component="div">
+            {!gameOver ? (
+              <div style={{ fontSize: 30, color: "red" }}> Score: {score}</div>
+            ) : null}
+          </Typography>
+          {!gameOver && (
+            <QuestionCard
+              questionNr={number + 1}
+              totalQuestions={TOTAL_QUESTIONS}
+              question={questions[number].question}
+              answers={questions[number].answers}
+              userAnswer={userAnswers ? userAnswers[number] : undefined}
+              callback={checkAnswer}
+            />
+          )}
 
-      <Box className="primary" mt={1}>
-        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <Button
-            startIcon={<PlayCircleOutlineRoundedIcon />}
-            variant="contained"
-            className={classes.button}
-            color="primary"
-            onClick={startTrivia}
-          >
-            Play
-          </Button>
-        ) : null}
-        {number > 0 && userAnswers.length === TOTAL_QUESTIONS ? (
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<CloudUploadIcon />}
-            onClick={submitScore}
-          >
-            Submit Score
-          </Button>
-        ) : null}
-      </Box>
-      <Box>
-        {!gameOver &&
-        userAnswers.length === number + 1 &&
-        number !== TOTAL_QUESTIONS - 1 ? (
-          <Button
-            size="large"
-            className={classes.title}
-            startIcon={<SkipNextRoundedIcon />}
-            variant="contained"
-            color="primary"
-            onClick={nextQuestion}
-          >
-            Next Question
-          </Button>
-        ) : null}
-      </Box>
+          <Box className="primary" mt={1}>
+            {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+              <Button
+                startIcon={<PlayCircleOutlineRoundedIcon />}
+                variant="contained"
+                className={classes.button}
+                color="primary"
+                onClick={startTrivia}
+              >
+                Play
+              </Button>
+            ) : null}
+            {number > 0 && userAnswers.length === TOTAL_QUESTIONS ? (
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+                startIcon={<CloudUploadIcon />}
+                onClick={submitScore}
+              >
+                Submit Score
+              </Button>
+            ) : null}
+          </Box>
+          <Box>
+            {!gameOver &&
+            userAnswers.length === number + 1 &&
+            number !== TOTAL_QUESTIONS - 1 ? (
+              <Button
+                className={classes.button}
+                startIcon={<SkipNextRoundedIcon />}
+                variant="contained"
+                color="primary"
+                onClick={nextQuestion}
+              >
+                Next Question
+              </Button>
+            ) : null}
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6}></Grid>
+      </Grid>
     </Box>
   );
 };

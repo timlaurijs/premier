@@ -1,6 +1,8 @@
+import React, { useState, useEffect } from "react";
+
+//
 import ExerciseCard from "../components/ExerciseCard";
 
-import React, { useState, useEffect } from "react";
 import { CodingGame } from "../store/codinggame/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectExercise } from "../store/codinggame/selector";
