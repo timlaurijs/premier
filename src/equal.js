@@ -1,5 +1,4 @@
 export function equal(a, b) {
-  console.log(a, b);
   const condition = typeof a === "number" && typeof b === "number";
   const condition2 = typeof a === "string" && typeof b === "string";
   const condition3 = typeof a === "boolean" && typeof b === "boolean";
