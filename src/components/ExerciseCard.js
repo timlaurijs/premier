@@ -17,13 +17,9 @@ const codeMirrorOptions = {
   lineWrapping: true,
 };
 
-// exercise={exercises[number].exercise}
-// description={exercises[number].description}
-// given={exercises[number].given}
-// answer={exercises[number].answer}
-
 export default function ExerciseCard(props) {
   const [code, setCode] = useState("");
+  const [output, setOutput] = useState("");
   const runCode = (exercise) => {
     console.log("exercise resp. given", exercise + props.given);
 
@@ -40,9 +36,12 @@ export default function ExerciseCard(props) {
       eval(codeToRun);
       if (!equal(submits, JSON.parse(props.answer))) {
         console.log("mistake");
+        setOutput(`Your code rendered ${submits}. Try again!`);
       } else {
         console.log("success!");
+        setOutput("Well done!");
       }
+      setCode("");
     } catch (error) {
       console.log(error);
     }
@@ -55,9 +54,11 @@ export default function ExerciseCard(props) {
         {props.id}.{""} {props.description}
       </h3>
       <p>{props.exercise}</p>
+      <p>
+        <i>Given: {props.given}</i>
+      </p>
       <CodeMirror
         value={code}
-        // value={props.given}
         options={{
           mode: "javascript",
           ...codeMirrorOptions,
@@ -67,6 +68,7 @@ export default function ExerciseCard(props) {
           setCode(js);
         }}
       />
+      <p>{output}</p>
       <Button
         endIcon={<ComputerIcon />}
         style={{
@@ -77,7 +79,7 @@ export default function ExerciseCard(props) {
         color="primary"
         variant="contained"
         onClick={() => {
-          runCode(props.given);
+          runCode(code);
           // runCode(code);
           //something goes wrong here!
         }}
