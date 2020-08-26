@@ -23,12 +23,13 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = () => {
   const classes = useStyles();
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
   const [progress, setProgress] = useState(0);
 
@@ -36,31 +37,6 @@ const SignUp = () => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
-  };
-
-  const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgress(progress);
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            setUrl(url);
-          });
-      }
-    );
   };
 
   console.log("image: ", image);
@@ -73,10 +49,38 @@ const SignUp = () => {
     }
   }, [token, history]);
 
-  const formHandler = (event) => {
+  const formHandler = async (event) => {
     event.preventDefault();
-    console.log(`name: ${name}, email: ${email}, password: ${password}`);
-    dispatch(signUp(name, email, password, image));
+    try {
+      const uploadTask = storage.ref(`images/${image.name}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(progress);
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          storage
+            .ref("images")
+            .child(image.name)
+            .getDownloadURL()
+            .then((url) => {
+              setUrl(url);
+              console.log(
+                `name: ${name}, description: ${description}, email: ${email}, password: ${password}, image: ${url}`
+              );
+              dispatch(signUp(name, description, email, password, url));
+            });
+        }
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -89,6 +93,13 @@ const SignUp = () => {
             onChange={(event) => setName(event.target.value)}
             placeholder="name"
             name="name"
+          ></input>
+          <label htmlFor="description"> Description </label>
+          <input
+            type="text"
+            onChange={(event) => setDescription(event.target.value)}
+            placeholder="description"
+            name="description"
           ></input>
           <label htmlFor="email"> Email </label>
           <input
@@ -105,15 +116,17 @@ const SignUp = () => {
             name="password"
           ></input>
           <input type="file" onChange={handleChange} />
-          <button onClick={handleUpload}>Upload</button>
-          <Button type="submit"> Submit</Button>
+          <button type="submit"> Submit</button>
         </form>
       </div>
 
       <br />
 
       <br />
-      <img src={url || "http://via.placeholder.com/300"} alt="firebaseimage" />
+      <img
+        src={image || "http://via.placeholder.com/300"}
+        alt="firebaseimage"
+      />
     </Box>
   );
 };
