@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function AnswerCard() {
+export default function AnswerCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -56,7 +56,7 @@ export default function AnswerCard() {
         <CardHeader title="Get Help" subheader="use only if you get stuck" />
 
         <CardActions disableSpacing>
-          {"Expand to see the answer"}{" "}
+          {"Please give me a hint!"}{" "}
           <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
@@ -69,7 +69,7 @@ export default function AnswerCard() {
           </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>We can make answers and map over them.</CardContent>
+          <CardContent>{props.hint}</CardContent>
         </Collapse>
       </Card>
     </div>

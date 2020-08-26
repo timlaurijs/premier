@@ -80,7 +80,7 @@ export default function CodingExercises() {
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <AnswerCard />
+            <AnswerCard hint={exercises[number].hint} />
           </Grid>
         </Grid>
       )}
