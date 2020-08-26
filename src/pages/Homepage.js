@@ -3,6 +3,7 @@ import PremierFounder from "../components/PremierFounder";
 import axios from "axios";
 import { API_URL_QUOTES } from "../constants/constants";
 import { Button, Box } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const premierFounders = [
   {
@@ -81,13 +82,17 @@ export default function Homepage() {
         <i>{inspirationalQuote.text}</i> - {inspirationalQuote.author}
       </p>
 
-      <Button variant="contained" color="primary">
-        Sign Up
-      </Button>
+      <Link to="/signup">
+        <Button variant="contained" color="primary">
+          Sign Up
+        </Button>
+      </Link>
 
-      <Button variant="contained" color="primary">
-        Login
-      </Button>
+      <Link to="/login">
+        <Button variant="contained" color="primary">
+          Login
+        </Button>
+      </Link>
     </Box>
   );
 }

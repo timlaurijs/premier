@@ -37,9 +37,9 @@ export default function QuestionCard({ exercise }) {
     try {
       eval(codeToRun);
       if (!equal(submits, JSON.parse(exercise.answer))) {
-        console.log("mistake");
+        console.log("success");
       } else {
-        console.log("success!");
+        console.log("mistake!");
       }
     } catch (error) {
       console.log(error);
