@@ -76,7 +76,7 @@ const SignUp = () => {
   const formHandler = (event) => {
     event.preventDefault();
     console.log(`name: ${name}, email: ${email}, password: ${password}`);
-    dispatch(signUp(name, email, password));
+    dispatch(signUp(name, email, password, image));
   };
 
   return (
@@ -104,12 +104,12 @@ const SignUp = () => {
             placeholder="password"
             name="password"
           ></input>
-
+          <input type="file" onChange={handleChange} />
+          <button onClick={handleUpload}>Upload</button>
           <Button type="submit"> Submit</Button>
         </form>
       </div>
-      <input type="file" onChange={handleChange} />
-      <button onClick={handleUpload}>Upload</button>
+
       <br />
 
       <br />

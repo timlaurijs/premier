@@ -63,8 +63,7 @@ export default function Homepage() {
           alignItems: "center",
         }}
       >
-        <h1>Welcome to Premier Coding!</h1>
-        <h2>Who are we?</h2>
+        <h1>Welcome to Premier Coding! </h1> <h2> Who are we?</h2>
       </div>
 
       <Box
