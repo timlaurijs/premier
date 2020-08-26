@@ -43,6 +43,7 @@ const loginSuccess = (userWithToken) => {
 };
 export const logOut = () => ({ type: LOG_OUT });
 
+
 export const signUp = (name, description, email, password, imageUrl) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());

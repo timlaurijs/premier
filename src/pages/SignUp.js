@@ -26,6 +26,7 @@ const SignUp = () => {
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [description, setDescription] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
@@ -41,8 +42,6 @@ const SignUp = () => {
 
   console.log("image: ", image);
 
-  console.log("image", image);
-
   useEffect(() => {
     if (token !== null) {
       history.push("/");
@@ -51,6 +50,7 @@ const SignUp = () => {
 
   const formHandler = async (event) => {
     event.preventDefault();
+
     try {
       const uploadTask = storage.ref(`images/${image.name}`).put(image);
       uploadTask.on(
@@ -81,6 +81,7 @@ const SignUp = () => {
     } catch (error) {
       console.log(error.message);
     }
+   
   };
 
   return (
@@ -108,6 +109,14 @@ const SignUp = () => {
             placeholder="email"
             name="email"
           ></input>
+          <label htmlFor="email"> Description </label>
+          <input
+            type="text"
+            onChange={(event) => setDescription(event.target.value)}
+            placeholder="description"
+            name="description"
+          ></input>
+
           <label htmlFor="password"> Password </label>
           <input
             type="password"
