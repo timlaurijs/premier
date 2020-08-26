@@ -18,9 +18,15 @@ export default function CodingExercises() {
   const [gameOver, setGameOver] = useState(true)
   const [userAnswers, setUserAnswers] = useState([])
 
-  const someUser = useSelector(selectUser)
-  const exercises = useSelector(selectExercise)
-  const TOTAL_QUESTIONS = 5 || exercises.length
+  // const someUser = useSelector(selectUser);
+  const exercises = useSelector(selectExercise);
+  const TOTAL_QUESTIONS = exercises.length;
+
+  const upLiftedScore = (increment) => {
+    setScore((prev) => prev + increment);
+  };
+
+  console.log(score);
 
   useEffect(() => {
     dispatch(CodingGame())
@@ -65,7 +71,7 @@ export default function CodingExercises() {
               <div style={{ fontSize: 30, color: "red" }}> Score: {score}</div>
             ) : null}
           </Typography>
-          <h1
+          {/* <h1
             style={{
               maxWidth: 300,
               fontSize: 25,
@@ -73,7 +79,7 @@ export default function CodingExercises() {
             }}
           >
             Level #1
-          </h1>
+          </h1> */}
         </Grid>
       </Grid>
       {!gameOver && (
@@ -86,6 +92,8 @@ export default function CodingExercises() {
                 description={exercises[number].description}
                 given={exercises[number].given}
                 answer={exercises[number].answer}
+                callbackScore={upLiftedScore}
+                stateScore={score.score}
               />
             </Paper>
           </Grid>

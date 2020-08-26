@@ -21,16 +21,18 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SignUp = () => {
-  const classes = useStyles()
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const dispatch = useDispatch()
-  const token = useSelector(selectToken)
-  const history = useHistory()
-  const [image, setImage] = useState(null)
-  const [url, setUrl] = useState("")
-  const [progress, setProgress] = useState(0)
+
+  const classes = useStyles();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const history = useHistory();
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+  const [progress, setProgress] = useState(0);
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -38,34 +40,7 @@ const SignUp = () => {
     }
   }
 
-  const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image)
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        )
-        setProgress(progress)
-      },
-      (error) => {
-        console.log(error)
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            setUrl(url)
-          })
-      }
-    )
-  }
-
-  console.log("image: ", image)
-
-  console.log("image", image)
+  console.log("image: ", image);
 
   useEffect(() => {
     if (token !== null) {
@@ -73,11 +48,42 @@ const SignUp = () => {
     }
   }, [token, history])
 
-  const formHandler = (event) => {
-    event.preventDefault()
-    console.log(`name: ${name}, email: ${email}, password: ${password}`)
-    dispatch(signUp(name, email, password))
-  }
+
+  //THis is how to work with images in Firebase
+  const formHandler = async (event) => {
+    event.preventDefault();
+
+    try {
+      const uploadTask = storage.ref(`images/${image.name}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(progress);
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          storage
+            .ref("images")
+            .child(image.name)
+            .getDownloadURL()
+            .then((url) => {
+              setUrl(url);
+              console.log(
+                `name: ${name}, description: ${description}, email: ${email}, password: ${password}, image: ${url}`
+              );
+              dispatch(signUp(name, description, email, password, url));
+            });
+        }
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <Box
@@ -109,6 +115,7 @@ const SignUp = () => {
           ></input>
         </div>
         <div style={{ display: "block" }}>
+
           <label htmlFor="email"> Email </label>
           <input
             type="text"

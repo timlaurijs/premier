@@ -68,6 +68,7 @@ export default function Homepage() {
           Welcome to Premier Coding!
         </h1>
         <h2 style={{ fontSize: 25, marginTop: "10px" }}>Who are we?</h2>
+
       </div>
 
       <Box
