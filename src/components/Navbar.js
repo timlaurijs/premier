@@ -1,10 +1,10 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react"
+import { NavLink } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
 
 // store items
-import { selectUser } from "../store/user/selectors";
-import { logOut } from "../store/user/actions";
+import { selectUser } from "../store/user/selectors"
+import { logOut } from "../store/user/actions"
 
 // Material-ui components and icons
 import {
@@ -16,30 +16,31 @@ import {
   makeStyles,
   Tooltip,
   Fade,
-} from "@material-ui/core";
-import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp";
-import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded";
+} from "@material-ui/core"
+import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp"
+import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded"
 
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: 4,
-    color: "#6BCAE2",
+    color: "white",
     fontWeight: "bold",
-    backgroundImage:
-      "url(https://cdn.wccftech.com/wp-content/uploads/2016/09/spacee-740x463.jpg)",
+    backgroundColor: "#01095E",
+    // backgroundImage:
+    //   "url(https://cdn.wccftech.com/wp-content/uploads/2016/09/spacee-740x463.jpg)",
 
     "&:hover": {
-      color: "#000000", // on hover black color text
-      backgroundColor: "#ffff00", // does not work with a backgound image set as a background
+      // color: "#000000",
+      backgroundColor: "#010EAD", // does not work with a backgound image set as a background
     },
   },
-}));
+}))
 
 export default function Navbar(props) {
-  const classes = useStyles(); // material ui classes
-  const { imageUrl, token } = useSelector(selectUser);
-  const dispatch = useDispatch();
+  const classes = useStyles() // material ui classes
+  const { imageUrl, token } = useSelector(selectUser)
+  const dispatch = useDispatch()
 
   function darkModeButton() {
     if (props.darkMode) {
@@ -52,7 +53,7 @@ export default function Navbar(props) {
         >
           <WbSunnySharpIcon fontSize="large" />
         </IconButton>
-      );
+      )
     } else {
       return (
         <IconButton
@@ -63,12 +64,27 @@ export default function Navbar(props) {
         >
           <Brightness3RoundedIcon fontSize="large" />
         </IconButton>
-      );
+      )
     }
   }
 
   const loginLogoutControls = token ? (
     <>
+      <Tooltip
+        size="medium"
+        TransitionComponent={Fade}
+        TransitionProps={{ timeout: 600 }}
+        title="DASHBOARD"
+      >
+        <Button
+          variant="contained"
+          className={classes.button}
+          component={NavLink}
+          to="/dashboard"
+        >
+          Dashboard
+        </Button>
+      </Tooltip>
       <Tooltip
         size="medium"
         TransitionComponent={Fade}
@@ -124,7 +140,7 @@ export default function Navbar(props) {
         </Button>
       </Tooltip>
     </>
-  );
+  )
 
   return (
     <AppBar>
@@ -144,36 +160,6 @@ export default function Navbar(props) {
             to="/"
           >
             Home
-          </Button>
-        </Tooltip>
-        <Tooltip
-          size="medium"
-          TransitionComponent={Fade}
-          TransitionProps={{ timeout: 600 }}
-          title="DASHBOARD"
-        >
-          <Button
-            variant="contained"
-            className={classes.button}
-            component={NavLink}
-            to="/dashboard"
-          >
-            Dashboard
-          </Button>
-        </Tooltip>
-        <Tooltip
-          size="medium"
-          TransitionComponent={Fade}
-          TransitionProps={{ timeout: 600 }}
-          title="MOTIVATION"
-        >
-          <Button
-            variant="contained"
-            className={classes.button}
-            component={NavLink}
-            to="/motivation"
-          >
-            motivation
           </Button>
         </Tooltip>
         <Tooltip
@@ -209,5 +195,5 @@ export default function Navbar(props) {
         {loginLogoutControls}
       </Toolbar>
     </AppBar>
-  );
+  )
 }

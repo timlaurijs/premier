@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
-import { Button, Box } from "@material-ui/core";
-import UserContext from "../Context/UserContext";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react"
+import { useSelector } from "react-redux"
+import { Button, Box } from "@material-ui/core"
+import { Link } from "react-router-dom"
+import { selectUser } from "../store/user/selectors"
 
 export default function Dashboard() {
-  const { isLoggedIn, setUpLoggingDashboard } = useContext(UserContext);
+  const { token, name } = useSelector(selectUser)
 
-  if (isLoggedIn) {
+  if (token) {
     return (
-      <Box mt={10} style={{ fontSize: 25 }}>
-        <h1>Welcome, awesome coding learner!</h1>
+      <Box mt={10} style={{ fontSize: 25, marginLeft: 20 }}>
+        <h1>Welcome, {name}!</h1>
         <p>What do you want to do today?</p>
         <Button variant="contained" color="primary">
           Motivate me!
@@ -21,7 +22,7 @@ export default function Dashboard() {
           Test my coding skills
         </Button>
       </Box>
-    );
+    )
   } else {
     return (
       <div>
@@ -32,6 +33,6 @@ export default function Dashboard() {
           </button>
         </Link>
       </div>
-    );
+    )
   }
 }
