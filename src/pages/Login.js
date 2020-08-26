@@ -7,7 +7,7 @@ import { login } from "../store/user/actions";
 import { selectToken } from "../store/user/selectors";
 
 //Mui components
-import { Button } from "@material-ui/core";
+import { Button, Box } from "@material-ui/core";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -28,28 +28,30 @@ const Login = () => {
     dispatch(login(email, password));
   };
   return (
-    <div className="Login">
-      <form onSubmit={formHandler}>
-        <label htmlFor="email"> Email </label>
-        <input
-          type="text"
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="email"
-          name="email"
-        ></input>
-        <label htmlFor="password"> Password </label>
-        <input
-          type="password"
-          onChange={(event) => setPassword(event.target.value)}
-          placeholder="password"
-          name="password"
-        ></input>
-        <Button variant="contained" color="primary" type="submit">
-          {" "}
-          Submit
-        </Button>
-      </form>
-    </div>
+    <Box mt={10} style={{ fontSize: 25 }}>
+      <div className="Login">
+        <form onSubmit={formHandler}>
+          <label htmlFor="email"> Email </label>
+          <input
+            type="text"
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="email"
+            name="email"
+          ></input>
+          <label htmlFor="password"> Password </label>
+          <input
+            type="password"
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="password"
+            name="password"
+          ></input>
+          <Button variant="contained" color="primary" type="submit">
+            {" "}
+            Submit
+          </Button>
+        </form>
+      </div>
+    </Box>
   );
 };
 
