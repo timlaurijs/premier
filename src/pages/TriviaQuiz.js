@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+//Assets: gif
+import play from "../assets/play.gif";
+
 // Components
 
 // Redux store
@@ -107,6 +110,11 @@ const Questions = () => {
 
   return (
     <Box className={classes.title} mt={10}>
+      <img
+        src={play}
+        alt="loading..."
+        style={{ width: "400px", height: "400px" }}
+      />
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography component="div">
@@ -133,6 +141,7 @@ const Questions = () => {
                 className={classes.button}
                 color="primary"
                 onClick={startTrivia}
+                style={{ width: "200", height: "75px" }}
               >
                 Play
               </Button>

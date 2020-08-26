@@ -28,10 +28,15 @@ export default function Motivation() {
 
   return (
     <Box mt={10} style={{ fontSize: 25 }}>
-      <h1>
+      <h1 style={{ margin: "30px" }}>
         <i>{inspirationalQuote.text}</i> - {inspirationalQuote.author}
       </h1>
-      <Button variant="contained" color="primary" onClick={() => fetchQuote()}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => fetchQuote()}
+        style={{ margin: "30px" }}
+      >
         More motivation!
       </Button>
     </Box>
