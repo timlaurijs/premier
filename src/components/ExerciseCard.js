@@ -23,6 +23,7 @@ export default function QuestionCard({ exercise }) {
   console.log("what is CODE", code);
   const runCode = (exercise) => {
     console.log("exercise", exercise);
+
     let submits = []; //logic is wrong here because of the equals.js logic //we need to change this//Submit does not have the right value.
     const givenValues = exercise.given;
     console.log(givenValues);
