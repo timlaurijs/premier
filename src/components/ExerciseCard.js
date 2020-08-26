@@ -17,16 +17,18 @@ const codeMirrorOptions = {
   lineWrapping: true,
 };
 
-export default function QuestionCard({ exercise }) {
-  console.log("what is exercise given", exercise.given);
-  const [code, setCode] = useState(exercise.given);
-  console.log("what is CODE", code);
+// exercise={exercises[number].exercise}
+// description={exercises[number].description}
+// given={exercises[number].given}
+// answer={exercises[number].answer}
+
+export default function ExerciseCard(props) {
+  const [code, setCode] = useState("");
   const runCode = (exercise) => {
-    console.log("exercise", exercise);
+    console.log("exercise resp. given", exercise + props.given);
 
     let submits = []; //logic is wrong here because of the equals.js logic //we need to change this//Submit does not have the right value.
-    const givenValues = exercise.given;
-    console.log(givenValues);
+    const givenValues = props.given;
     const codeToRun = `const console = {log(arg) {submits=[...submits,arg];}};
     const document = null;
     const location = null;
@@ -36,7 +38,7 @@ export default function QuestionCard({ exercise }) {
     ;`;
     try {
       eval(codeToRun);
-      if (!equal(submits, JSON.parse(exercise.answer))) {
+      if (!equal(submits, JSON.parse(props.answer))) {
         console.log("mistake");
       } else {
         console.log("success!");
@@ -47,15 +49,15 @@ export default function QuestionCard({ exercise }) {
   };
 
   return (
-    <Box p={3} key={exercise.id}>
+    <Box p={3} key={props.id}>
       {" "}
       <h3>
-        {exercise.id}.{""} {exercise.description}
+        {props.id}.{""} {props.description}
       </h3>
-      <p>{exercise.exercise}</p>
-      <p>{exercise.given}</p>
+      <p>{props.exercise}</p>
       <CodeMirror
         value={code}
+        // value={props.given}
         options={{
           mode: "javascript",
           ...codeMirrorOptions,
@@ -75,7 +77,9 @@ export default function QuestionCard({ exercise }) {
         color="primary"
         variant="contained"
         onClick={() => {
-          runCode(exercise);
+          runCode(props.given);
+          // runCode(code);
+          //something goes wrong here!
         }}
       >
         {" "}
