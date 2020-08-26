@@ -26,7 +26,6 @@ const SignUp = () => {
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [description, setDescription] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
@@ -48,6 +47,7 @@ const SignUp = () => {
     }
   }, [token, history]);
 
+  //THis is how to work with images in Firebase
   const formHandler = async (event) => {
     event.preventDefault();
 
@@ -81,7 +81,6 @@ const SignUp = () => {
     } catch (error) {
       console.log(error.message);
     }
-   
   };
 
   return (
