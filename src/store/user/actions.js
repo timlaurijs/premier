@@ -43,16 +43,17 @@ const loginSuccess = (userWithToken) => {
 };
 export const logOut = () => ({ type: LOG_OUT });
 
-export const signUp = (name, email, password, description, image) => {
+
+export const signUp = (name, description, email, password, imageUrl) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/signup`, {
-        name: name,
-        email: email,
-        password: password,
-        description: description,
-        image: image,
+        name,
+        description,
+        email,
+        password,
+        imageUrl,
       });
 
       dispatch(loginSuccess(response.data));
