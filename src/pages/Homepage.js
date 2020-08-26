@@ -8,25 +8,25 @@ import { Link } from "react-router-dom";
 const premierFounders = [
   {
     name: "Ivo",
-    description: "Hi! I'm Ivo",
+    description: "Loves coffee!",
     imageUrl:
       "https://avatars0.githubusercontent.com/u/66206483?s=400&u=c2a444fe4defb6454d8f0876bb6538ed653c2111&v=4",
   },
   {
     name: "Karem",
-    description: "Hi! I'm Karem",
+    description: "Cat lady!",
     imageUrl:
       "https://ca.slack-edge.com/T0DK39WAJ-U014DDWRCQP-4c57575d19a9-512",
   },
   {
     name: "Tim",
-    description: "Hi! I'm Tim",
+    description: "coffee addict!",
     imageUrl:
       "https://avatars0.githubusercontent.com/u/65892566?s=400&u=e2fc9b1339cf9f3d535a62948b6e5281fcb9a287&v=4",
   },
   {
     name: "Nina",
-    description: "Hi! I'm Nina",
+    description: "Dog lover!",
     imageUrl:
       "https://ca.slack-edge.com/T0DK39WAJ-U0153LFMCQL-678c7dd328ad-512",
   },
