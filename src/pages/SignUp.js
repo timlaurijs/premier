@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectToken } from "../store/user/selectors";
-import { useHistory } from "react-router-dom";
-import { signUp } from "../store/user/actions";
-import { Box, Button, IconButton, makeStyles } from "@material-ui/core";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { selectToken } from "../store/user/selectors"
+import { useHistory } from "react-router-dom"
+import { signUp } from "../store/user/actions"
+import { Box, Button, IconButton, makeStyles } from "@material-ui/core"
+import PhotoCamera from "@material-ui/icons/PhotoCamera"
 
 // FireBase
-import { storage } from "../Firebase";
+import { storage } from "../Firebase"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,38 +18,38 @@ const useStyles = makeStyles((theme) => ({
   input: {
     display: "none",
   },
-}));
+}))
 
 const SignUp = () => {
-  const classes = useStyles();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-  const token = useSelector(selectToken);
-  const history = useHistory();
-  const [image, setImage] = useState(null);
-  const [url, setUrl] = useState("");
-  const [progress, setProgress] = useState(0);
+  const classes = useStyles()
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const dispatch = useDispatch()
+  const token = useSelector(selectToken)
+  const history = useHistory()
+  const [image, setImage] = useState(null)
+  const [url, setUrl] = useState("")
+  const [progress, setProgress] = useState(0)
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
-      setImage(e.target.files[0]);
+      setImage(e.target.files[0])
     }
-  };
+  }
 
   const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const uploadTask = storage.ref(`images/${image.name}`).put(image)
     uploadTask.on(
       "state_changed",
       (snapshot) => {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgress(progress);
+        )
+        setProgress(progress)
       },
       (error) => {
-        console.log(error);
+        console.log(error)
       },
       () => {
         storage
@@ -57,32 +57,49 @@ const SignUp = () => {
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
-            setUrl(url);
-          });
+            setUrl(url)
+          })
       }
-    );
-  };
+    )
+  }
 
-  console.log("image: ", image);
+  console.log("image: ", image)
 
-  console.log("image", image);
+  console.log("image", image)
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/");
+      history.push("/")
     }
-  }, [token, history]);
+  }, [token, history])
 
   const formHandler = (event) => {
-    event.preventDefault();
-    console.log(`name: ${name}, email: ${email}, password: ${password}`);
-    dispatch(signUp(name, email, password));
-  };
+    event.preventDefault()
+    console.log(`name: ${name}, email: ${email}, password: ${password}`)
+    dispatch(signUp(name, email, password))
+  }
 
   return (
-    <Box mt={10} style={{ fontSize: 25 }}>
-      <div className="SignUp">
-        <form onSubmit={formHandler}>
+    <Box
+      mt={10}
+      style={{
+        fontSize: 25,
+        display: "flex",
+        flex: 1,
+        // flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
+      <form
+        onSubmit={formHandler}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          marginTop: 30,
+        }}
+      >
+        <div style={{ display: "block" }}>
           <label htmlFor="name"> Name </label>
           <input
             type="text"
@@ -90,6 +107,8 @@ const SignUp = () => {
             placeholder="name"
             name="name"
           ></input>
+        </div>
+        <div style={{ display: "block" }}>
           <label htmlFor="email"> Email </label>
           <input
             type="text"
@@ -97,6 +116,8 @@ const SignUp = () => {
             placeholder="email"
             name="email"
           ></input>
+        </div>
+        <div style={{ display: "block" }}>
           <label htmlFor="password"> Password </label>
           <input
             type="password"
@@ -104,18 +125,29 @@ const SignUp = () => {
             placeholder="password"
             name="password"
           ></input>
-
-          <Button type="submit"> Submit</Button>
-        </form>
-      </div>
-      <input type="file" onChange={handleChange} />
-      <button onClick={handleUpload}>Upload</button>
-      <br />
-
-      <br />
-      <img src={url || "http://via.placeholder.com/300"} alt="firebaseimage" />
+        </div>
+        <input type="file" onChange={handleChange} style={{ marginTop: 10 }} />
+        <button onClick={handleUpload} style={{ marginTop: 10 }}>
+          Upload
+        </button>
+        <img
+          style={{ marginTop: 10 }}
+          src={url || "http://via.placeholder.com/300"}
+          alt="firebaseimage"
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          type="submit"
+          style={{ marginTop: 10 }}
+        >
+          {" "}
+          Submit
+        </Button>
+      </form>
     </Box>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

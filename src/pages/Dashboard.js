@@ -1,12 +1,10 @@
 import React, { useContext } from "react"
 import { useSelector } from "react-redux"
 import { Button, Box } from "@material-ui/core"
-import UserContext from "../Context/UserContext"
 import { Link } from "react-router-dom"
 import { selectUser } from "../store/user/selectors"
 
 export default function Dashboard() {
-  // const { isLoggedIn, setUpLoggingDashboard } = useContext(UserContext)
   const { token, name } = useSelector(selectUser)
 
   if (token) {

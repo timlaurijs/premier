@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import PremierFounder from "../components/PremierFounder";
-import axios from "axios";
-import { API_URL_QUOTES } from "../constants/constants";
-import { Button, Box } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import PremierFounder from "../components/PremierFounder"
+import axios from "axios"
+import { API_URL_QUOTES } from "../constants/constants"
+import { Button, Box } from "@material-ui/core"
+import { Link } from "react-router-dom"
 
 const premierFounders = [
   {
@@ -30,41 +30,44 @@ const premierFounders = [
     imageUrl:
       "https://ca.slack-edge.com/T0DK39WAJ-U0153LFMCQL-678c7dd328ad-512",
   },
-];
+]
 
 function getRandomNumber(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min));
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min))
 }
 
 export default function Homepage() {
   const [inspirationalQuote, setInspirationalQuote] = useState({
     text: "",
     author: "",
-  });
+  })
 
   useEffect(() => {
     async function fetchQuote() {
-      const data = await axios.get(API_URL_QUOTES);
-      const randomNumber = getRandomNumber(1, 1643);
-      const randomQuote = data.data[randomNumber];
-      setInspirationalQuote({ ...inspirationalQuote, ...randomQuote });
+      const data = await axios.get(API_URL_QUOTES)
+      const randomNumber = getRandomNumber(1, 1643)
+      const randomQuote = data.data[randomNumber]
+      setInspirationalQuote({ ...inspirationalQuote, ...randomQuote })
     }
-    fetchQuote();
-  }, []);
+    fetchQuote()
+  }, [])
 
   return (
-    <Box mt={10} style={{ fontSize: 25 }}>
+    <Box mt={10} style={{ fontSize: 25, paddingLeft: 25 }}>
       <div
         style={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <h1>Welcome to Premier Coding!</h1>
-        <h2>Who are we?</h2>
+        <h1 style={{ fontSize: 30, marginTop: "10px" }}>
+          Welcome to Premier Coding!
+        </h1>
+        <h2 style={{ fontSize: 25, marginTop: "10px" }}>Who are we?</h2>
       </div>
 
       <Box
@@ -75,7 +78,7 @@ export default function Homepage() {
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr 1fr",
           padding: "10px",
-          border: "5px solid #800000",
+          border: "2px solid #4D5BF7",
         }}
       >
         {premierFounders.map((founder) => {
@@ -86,32 +89,46 @@ export default function Homepage() {
               description={founder.description}
               imageUrl={founder.imageUrl}
             />
-          );
+          )
         })}
       </Box>
-      <p style={{ margin: "50px" }}>
-        <i>{inspirationalQuote.text}</i> - {inspirationalQuote.author}
-      </p>
+      <div style={{ margin: "30px", textAlign: "center" }}>
+        <p style={{ fontSize: 20 }}>
+          <i>{inspirationalQuote.text}</i>
+        </p>
 
-      <Link to="/signup">
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ margin: "30px", width: "100px", height: "50px" }}
-        >
-          Sign Up
-        </Button>
-      </Link>
+        {inspirationalQuote.author ? (
+          <p style={{ fontSize: 20 }}>- {inspirationalQuote.author}</p>
+        ) : null}
+      </div>
+      <div
+        style={{
+          width: "50vw",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Link to="/signup">
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ margin: "30px", width: "100px", height: "50px" }}
+          >
+            Sign Up
+          </Button>
+        </Link>
 
-      <Link to="/login">
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ margin: "30px", width: "100px", height: "50px" }}
-        >
-          Login
-        </Button>
-      </Link>
+        <Link to="/login">
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ margin: "30px", width: "100px", height: "50px" }}
+          >
+            Login
+          </Button>
+        </Link>
+      </div>
     </Box>
-  );
+  )
 }
