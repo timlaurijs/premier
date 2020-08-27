@@ -7,11 +7,9 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import ShareIcon from "@material-ui/icons/Share";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { Link, Button, Slide, Fade, Snackbar } from "@material-ui/core";
+import GitHubIcon from "@material-ui/icons/GitHub";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -38,16 +36,40 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+function SlideTransition(props) {
+  return <Slide {...props} direction="up" />;
+}
+
 export default function PremierFounder(props) {
   const classes = useStyles();
+  const [state, setState] = React.useState({
+    open: false,
+    Transition: Fade,
+  });
+
+  const handleClick = (Transition) => () => {
+    setState({
+      open: true,
+      Transition,
+    });
+  };
+
+  const handleClose = () => {
+    setState({
+      ...state,
+      open: false,
+    });
+  };
 
   return (
     <Card className={classes.root}>
       <CardHeader
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <Link href={props.gitUrl} target="_blank" isExternal>
+            <Button variant="contained" color="primary" aria-label="settings">
+              <GitHubIcon fontSize="small" />
+            </Button>
+          </Link>
         }
         title={props.name}
         subheader={props.description}
@@ -63,21 +85,18 @@ export default function PremierFounder(props) {
         <Typography component="p">{props.description}</Typography>
       </CardContent>
 
-      <CardActions disableSpacing>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
-
       <CardContent>
-        <Typography paragraph>Method:</Typography>
-
         <Typography paragraph>
-          Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-          set aside for 10 minutes.
+          <Button onClick={handleClick(SlideTransition)}>About me:</Button>
+          <Snackbar
+            open={state.open}
+            onClose={handleClose}
+            TransitionComponent={state.Transition}
+            message={props.description}
+            key={state.Transition.name}
+          />
         </Typography>
-        <Typography paragraph></Typography>
-        <Typography paragraph></Typography>
+
         <Typography>
           Set aside off of the heat to let rest for 10 minutes, and then serve.
         </Typography>
