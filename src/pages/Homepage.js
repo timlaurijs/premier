@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PremierFounder from "../components/PremierFounder";
 import axios from "axios";
 import { API_URL_QUOTES } from "../constants/constants";
-import { Button, Box } from "@material-ui/core";
+import { Button, Box, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 const premierFounders = [
@@ -70,28 +70,21 @@ export default function Homepage() {
         <h2 style={{ fontSize: 25, marginTop: "10px" }}>Who are we?</h2>
       </div>
 
-      <Box
-        style={{
-          boarderRadius: 100,
-          width: "50vw",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr",
-          padding: "10px",
-          border: "2px solid #4D5BF7",
-        }}
-      >
+      <Grid container spacing={2}>
         {premierFounders.map((founder) => {
           return (
-            <PremierFounder
-              key={Math.random()}
-              name={founder.name}
-              description={founder.description}
-              imageUrl={founder.imageUrl}
-            />
+            <Grid item xs={12} sm={3}>
+              <PremierFounder
+                key={Math.random()}
+                name={founder.name}
+                description={founder.description}
+                imageUrl={founder.imageUrl}
+              />
+            </Grid>
           );
         })}
-      </Box>
+      </Grid>
+
       <div
         style={{
           display: "flex",
