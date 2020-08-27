@@ -17,6 +17,7 @@ import {
   Tooltip,
   CardActions,
   withStyles,
+  Paper,
 } from "@material-ui/core";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import FaceIcon from "@material-ui/icons/Face";
@@ -24,11 +25,14 @@ import FaceIcon from "@material-ui/icons/Face";
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      maxWidth: 450,
+      maxWidth: 430,
+      maxHigh: 630,
     },
     media: {
       paddingTop: "56.25%", // 16:9
       minHeight: 400,
+      minWidth: 380,
+      alignItems: "center",
     },
     expand: {
       transform: "rotate(0deg)",
@@ -50,9 +54,10 @@ const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
     backgroundColor: "#f5f5f9",
     color: "rgba(0, 0, 0, 0.87)",
-    maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
+    minWidth: 400,
+    fontSize: theme.typography.pxToRem(14),
     border: "1px solid #dadde9",
+    textColor: "#000000",
   },
 }))(Tooltip);
 
@@ -82,72 +87,79 @@ export default function PremierFounder(props) {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        title={props.name}
-        subheader="Codaisseur Academy Graduate"
-        action={
-          <Tooltip
-            color="primary"
-            arrow="true"
-            size="medium"
-            TransitionComponent={Fade}
-            TransitionProps={{ timeout: 600 }}
-            title={`Link to ${props.name}'s gethub `}
-          >
-            <Link href={props.gitUrl} target="_blank" isExternal>
-              <Button variant="contained" color="primary" aria-label="settings">
-                <GitHubIcon fontSize="small" />
-              </Button>
-            </Link>
-          </Tooltip>
-        }
-      />
-
-      <Typography paragraph>
-        <Snackbar
-          open={state.open}
-          onClose={handleClose}
-          TransitionComponent={state.Transition}
-          message={props.description}
-          key={state.Transition.name}
-        />
-      </Typography>
-
-      <CardMedia
-        className={classes.media}
-        image={props.imageUrl}
-        title={props.name}
-      />
-      <CardContent>
-        <Typography paragraph>About me ...</Typography>
-        <Typography paragraph>Skills, stacks etc.</Typography>
-        <Typography paragraph>Brief personal info</Typography>
-      </CardContent>
-      <CardActions spacing={5}>
-        <Button
-          startIcon={<FaceIcon />}
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={handleClick(SlideTransition)}
-        >
-          About me
-        </Button>
-        <HtmlTooltip
-          title={
-            <React.Fragment>
-              <Typography color="inherit">Conact</Typography>
-              <p> email: </p>
-              <p> country of origin: </p>
-              <p> Languages: </p>
-              <p> country of residence: </p>
-            </React.Fragment>
+    <Card elevation={3} className={classes.root}>
+      <Paper>
+        <CardHeader
+          title={props.name}
+          subheader="Codaisseur Academy Graduate"
+          action={
+            <Tooltip
+              color="primary"
+              arrow="true"
+              size="medium"
+              TransitionComponent={Fade}
+              TransitionProps={{ timeout: 600 }}
+              title={`Link to ${props.name}'s gethub `}
+            >
+              <Link href={props.gitUrl} target="_blank" isExternal>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  aria-label="settings"
+                >
+                  <GitHubIcon fontSize="small" />
+                </Button>
+              </Link>
+            </Tooltip>
           }
-        >
-          <Button>Contact</Button>
-        </HtmlTooltip>
-      </CardActions>
+        />
+
+        <Typography paragraph>
+          <Snackbar
+            open={state.open}
+            onClose={handleClose}
+            TransitionComponent={state.Transition}
+            message={props.description}
+            key={state.Transition.name}
+          />
+        </Typography>
+
+        <CardMedia
+          className={classes.media}
+          image={props.imageUrl}
+          title={props.name}
+        />
+        <CardContent>
+          <Typography paragraph>About me ...</Typography>
+          <Typography paragraph>Skills, stacks etc.</Typography>
+          <Typography paragraph>Brief personal info</Typography>
+        </CardContent>
+        <CardActions spacing={5}>
+          <Button
+            elevation={3}
+            endIcon={<FaceIcon />}
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={handleClick(SlideTransition)}
+          >
+            About
+          </Button>
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography color="inherit">Conact</Typography>
+                <p> email: </p>
+                <p> country of origin: </p>
+                <p> Languages: </p>
+                <p> country of residence: </p>
+              </React.Fragment>
+            }
+          >
+            <Button>Contact</Button>
+          </HtmlTooltip>
+        </CardActions>
+      </Paper>
     </Card>
   );
 }
