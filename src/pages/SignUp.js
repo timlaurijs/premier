@@ -134,9 +134,6 @@ const SignUp = () => {
           ></input>
         </div>
         <input type="file" onChange={handleChange} style={{ marginTop: 10 }} />
-        <button onClick={handleUpload} style={{ marginTop: 10 }}>
-          Upload
-        </button>
         <img
           style={{ marginTop: 10 }}
           src={url || "http://via.placeholder.com/300"}
