@@ -16,6 +16,7 @@ import {
   makeStyles,
   Tooltip,
   Fade,
+  Avatar,
 } from "@material-ui/core";
 import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp";
 import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded";
@@ -23,7 +24,8 @@ import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded";
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
   button: {
-    margin: 4,
+    fontSize: 9,
+    margin: 2,
     color: "white",
     fontWeight: "bold",
     backgroundColor: "#01095E",
@@ -39,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar(props) {
   const classes = useStyles(); // material ui classes
-  const { imageUrl, token } = useSelector(selectUser);
+  const { imageUrl, token, name } = useSelector(selectUser);
   const dispatch = useDispatch();
 
   function darkModeButton() {
@@ -51,7 +53,7 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <WbSunnySharpIcon fontSize="large" />
+          <WbSunnySharpIcon fontSize="small" />
         </IconButton>
       );
     } else {
@@ -62,7 +64,7 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <Brightness3RoundedIcon fontSize="large" />
+          <Brightness3RoundedIcon fontSize="small" />
         </IconButton>
       );
     }
@@ -77,6 +79,7 @@ export default function Navbar(props) {
         title="DASHBOARD"
       >
         <Button
+          size="small"
           variant="contained"
           className={classes.button}
           component={NavLink}
@@ -92,6 +95,7 @@ export default function Navbar(props) {
         title="LOGOUT"
       >
         <Button
+          size="small"
           variant="contained"
           className={classes.button}
           onClick={() => dispatch(logOut())}
@@ -99,13 +103,7 @@ export default function Navbar(props) {
           Log out
         </Button>
       </Tooltip>
-      {imageUrl ? (
-        <img
-          src={imageUrl}
-          style={{ height: "75px", padding: "5px" }}
-          alt="userImage"
-        ></img>
-      ) : null}
+      {imageUrl ? <Avatar src={imageUrl}></Avatar> : null}
     </>
   ) : (
     <>
