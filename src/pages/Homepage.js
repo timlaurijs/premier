@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
-import PremierFounder from "../components/PremierFounder"
-import axios from "axios"
-import { API_URL_QUOTES } from "../constants/constants"
-import { Button, Box } from "@material-ui/core"
-import { Link } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import PremierFounder from "../components/PremierFounder";
+import axios from "axios";
+import { API_URL_QUOTES } from "../constants/constants";
+import { Button, Box } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const premierFounders = [
   {
@@ -30,29 +30,29 @@ const premierFounders = [
     imageUrl:
       "https://ca.slack-edge.com/T0DK39WAJ-U0153LFMCQL-678c7dd328ad-512",
   },
-]
+];
 
 function getRandomNumber(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min))
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min));
 }
 
 export default function Homepage() {
   const [inspirationalQuote, setInspirationalQuote] = useState({
     text: "",
     author: "",
-  })
+  });
 
   useEffect(() => {
     async function fetchQuote() {
-      const data = await axios.get(API_URL_QUOTES)
-      const randomNumber = getRandomNumber(1, 1643)
-      const randomQuote = data.data[randomNumber]
-      setInspirationalQuote({ ...inspirationalQuote, ...randomQuote })
+      const data = await axios.get(API_URL_QUOTES);
+      const randomNumber = getRandomNumber(1, 1643);
+      const randomQuote = data.data[randomNumber];
+      setInspirationalQuote({ ...inspirationalQuote, ...randomQuote });
     }
-    fetchQuote()
-  }, [])
+    fetchQuote();
+  }, []);
 
   return (
     <Box mt={10} style={{ fontSize: 25, paddingLeft: 25 }}>
@@ -68,7 +68,6 @@ export default function Homepage() {
           Welcome to Premier Coding!
         </h1>
         <h2 style={{ fontSize: 25, marginTop: "10px" }}>Who are we?</h2>
-
       </div>
 
       <Box
@@ -90,7 +89,7 @@ export default function Homepage() {
               description={founder.description}
               imageUrl={founder.imageUrl}
             />
-          )
+          );
         })}
       </Box>
       <div style={{ margin: "30px", textAlign: "center" }}>
@@ -109,27 +108,7 @@ export default function Homepage() {
           display: "flex",
           justifyContent: "center",
         }}
-      >
-        <Link to="/signup">
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ margin: "30px", width: "100px", height: "50px" }}
-          >
-            Sign Up
-          </Button>
-        </Link>
-
-        <Link to="/login">
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ margin: "30px", width: "100px", height: "50px" }}
-          >
-            Login
-          </Button>
-        </Link>
-      </div>
+      ></div>
     </Box>
-  )
+  );
 }
