@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //Pages
-import Homepage from "./pages/Homepage/Homepage";
+import Homepage from "./pages/Homepage";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -23,13 +23,13 @@ const lightTheme = createMuiTheme({
   palette: {
     background: {
       default: "#e6e7f7",
+      paper: "#C0C0C0",
     },
     primary: {
       main: "#4D5BF7", // here you can change the NavBar and Button color ("primary")
       dark: "#0215DE ", // change the hover effect background color
     },
     type: "light",
-    // background: { paper: "#7A9D96" },
   },
 });
 
@@ -37,9 +37,10 @@ const darkTheme = createMuiTheme({
   palette: {
     background: {
       default: "#3D4061",
+      paper: "#323648",
     },
     primary: {
-      main: "#F7594A", // here you can change the NavBar and Button color ("primary")
+      main: "#f4a460", // here you can change the NavBar and Button color ("primary")
       dark: "#DE1200", // change the hover effect background color"
     },
     type: "dark",

@@ -87,7 +87,7 @@ export default function PremierFounder(props) {
   };
 
   return (
-    <Card elevation={3} className={classes.root}>
+    <Card elevation={23} className={classes.root}>
       <Paper>
         <CardHeader
           title={props.name}
@@ -136,7 +136,7 @@ export default function PremierFounder(props) {
         </CardContent>
         <CardActions spacing={5}>
           <Button
-            elevation={3}
+            elevation={23}
             endIcon={<FaceIcon />}
             variant="contained"
             color="primary"

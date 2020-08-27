@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PremierFounder from "../../components/PremierFounder";
 import axios from "axios";
 import { API_URL_QUOTES } from "../../constants/constants";
-import { Box, Grid, Paper } from "@material-ui/core";
+import { Box, Grid, Paper, Typography } from "@material-ui/core";
 import { useStyles } from "./styles";
 
 const premierFounders = [
@@ -65,14 +65,14 @@ export default function Homepage() {
     <Box mt={20}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
-          <Paper elevation={3}>
+          <Paper elevation={23}>
             <h1>Welcome to Premier Coding!</h1>
             <h2>Who are we?</h2>
           </Paper>
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <Paper elevation={3}>
+          <Paper elevation={23}>
             <p>
               <h1>{inspirationalQuote.text}</h1>
             </p>

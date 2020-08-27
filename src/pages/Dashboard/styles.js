@@ -7,12 +7,6 @@ export const useStyles = makeStyles((theme) =>
       maxWidth: 430,
       maxHigh: 630,
     },
-
-    content: {
-      fontSize: 20,
-      boarderRadius: "50%",
-    },
-
     media: {
       paddingTop: "56.25%", // 16:9
       minHeight: 400,
