@@ -20,9 +20,9 @@ export default function Dashboard() {
     } else if (progress > 30 && progress <= 50) {
       setLevel("tiger");
     } else if (progress > 50 && progress <= 75) {
-      setLevel("tiger");
-    } else if (progress > 75) {
       setLevel("elephant");
+    } else if (progress > 75) {
+      setLevel("mammoth");
     }
   });
 
@@ -33,7 +33,7 @@ export default function Dashboard() {
         <p>Level: {level}</p>
         <Box style={{ width: "50%", backgroundColor: "grey" }}>
           <Box
-            style={{ width: "5%", backgroundColor: "lightgray" }}
+            style={{ width: `${progress}%`, backgroundColor: "lightgray" }}
             p={1}
             my={0.5}
           ></Box>
