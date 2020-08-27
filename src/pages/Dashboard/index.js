@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 //store items
 import { selectUser } from "../../store/user/selectors"
@@ -18,9 +19,19 @@ export default function Dashboard() {
   const classes = useStyles()
 
   const user = useSelector(selectUser)
+  const token = user.token
   const [change, setChange] = useState(false)
   const progress = user.progress
   const [level, setLevel] = useState("amoebe")
+
+  const history = useHistory()
+
+  useEffect(() => {
+    if (token === null) {
+      history.push("/login")
+      console.log("I push to")
+    }
+  }, [token, history])
 
   useEffect(() => {
     if (progress > 5 && progress <= 10) {
@@ -40,110 +51,108 @@ export default function Dashboard() {
     }
   })
 
-  if (user.token) {
-    return (
-      <Box mt={10} overflow="hidden">
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={12}>
-            <Box className={classes.pageTitle}>
-              <h1 className={classes.h1}>Welcome, {user.name}!</h1>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Box ml={4}>
-              <Paper>
-                <p>
-                  <i>Name</i>
-                </p>
-                <p>{user.name}</p>
-                <p>
-                  <i>Email</i>
-                </p>
-                <p>{user.email}</p>
-                <p>
-                  <i>Who are you?</i>
-                </p>
-                <p>{user.description}</p>
-              </Paper>
-            </Box>
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <Box mr={6}>
-              <Paper>
-                <p>
-                  <i>Current level: </i>
-                </p>
-                <p>{progress}</p>
-                <p>
-                  <i>Current rank:</i>
-                </p>
-                <p>{level}</p>
-                <Box
-                  style={{
-                    width: `${progress}%`,
-                    backgroundColor: "lightgray",
-                  }}
-                  p={1}
-                  mt={0.5}
-                  bottom={0}
-                ></Box>
-              </Paper>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            {!change ? (
-              <Box ml={4}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => setChange(true)}
-                >
-                  Change my information
-                </Button>
-              </Box>
-            ) : (
-              <Box ml={4}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => setChange(false)}
-                >
-                  I'm done changing my information
-                </Button>
-              </Box>
-            )}
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Box mr={4}>
-              <Link to={`/triviaquiz`}>
-                <Button variant="contained" color="primary">
-                  CS trivia quiz
-                </Button>
-              </Link>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <Link to={`/codinggame`}>
-              <Box mr={4}>
-                <Button variant="contained" color="primary">
-                  Test my coding skills
-                </Button>
-              </Box>
-            </Link>
-          </Grid>
-
-          {change ? (
-            <Grid item xs={12} sm={12}>
-              <Box m={4}>
-                <ChangeUserData user={user} />
-              </Box>
-            </Grid>
-          ) : null}
+  return (
+    <Box mt={10} overflow="hidden">
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={12}>
+          <Box className={classes.pageTitle}>
+            <h1 className={classes.h1}>Welcome, {user.name}!</h1>
+          </Box>
         </Grid>
-      </Box>
-    )
-  }
+        <Grid item xs={12} sm={6}>
+          <Box ml={4}>
+            <Paper>
+              <p>
+                <i>Name</i>
+              </p>
+              <p>{user.name}</p>
+              <p>
+                <i>Email</i>
+              </p>
+              <p>{user.email}</p>
+              <p>
+                <i>Who are you?</i>
+              </p>
+              <p>{user.description}</p>
+            </Paper>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12} sm={6}>
+          <Box mr={6}>
+            <Paper>
+              <p>
+                <i>Current level: </i>
+              </p>
+              <p>{progress}</p>
+              <p>
+                <i>Current rank:</i>
+              </p>
+              <p>{level}</p>
+              <Box
+                style={{
+                  width: `${progress}%`,
+                  backgroundColor: "lightgray",
+                }}
+                p={1}
+                mt={0.5}
+                bottom={0}
+              ></Box>
+            </Paper>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          {!change ? (
+            <Box ml={4}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => setChange(true)}
+              >
+                Change my information
+              </Button>
+            </Box>
+          ) : (
+            <Box ml={4}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => setChange(false)}
+              >
+                I'm done changing my information
+              </Button>
+            </Box>
+          )}
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <Box mr={4}>
+            <Link to={`/triviaquiz`}>
+              <Button variant="contained" color="primary">
+                CS trivia quiz
+              </Button>
+            </Link>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={3}>
+          <Link to={`/codinggame`}>
+            <Box mr={4}>
+              <Button variant="contained" color="primary">
+                Test my coding skills
+              </Button>
+            </Box>
+          </Link>
+        </Grid>
+
+        {change ? (
+          <Grid item xs={12} sm={12}>
+            <Box m={4}>
+              <ChangeUserData user={user} />
+            </Box>
+          </Grid>
+        ) : null}
+      </Grid>
+    </Box>
+  )
 }
 
 /*
