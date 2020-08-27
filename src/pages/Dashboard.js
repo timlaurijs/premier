@@ -3,25 +3,24 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 //store items
-import { selectUser } from "../store/user/selectors"
+import { selectUser } from "../store/user/selectors";
 
 //components
-import ChangeUserData from "../components/ChangeUserData"
+import ChangeUserData from "../components/ChangeUserData";
 
 //material ui
-import { Button, Box } from "@material-ui/core"
+import { Button, Box } from "@material-ui/core";
 
 export default function Dashboard() {
-
-   // const { token, name, progress } = useSelector(selectUser);
-  const user = useSelector(selectUser)
-  const [change, setChange] = useState(false)
-  const progress = user.progress
+  // const { token, name, progress } = useSelector(selectUser);
+  const user = useSelector(selectUser);
+  const [change, setChange] = useState(false);
+  const progress = user.progress;
   const [level, setLevel] = useState("amoebe");
 
   useEffect(() => {
     if (progress > 5 && progress <= 10) {
-      setLevel("mosquito");
+      setLevel("bumblebee");
     } else if (progress > 10 && progress <= 15) {
       setLevel("hamster");
     } else if (progress > 15 && progress <= 20) {
@@ -43,12 +42,15 @@ export default function Dashboard() {
         <h1>Welcome, {user.name}!</h1>
         {!change ? (
           <>
+            <p>
+              <i>Current level: {level}</i>
+            </p>
             <Box style={{ width: "50%", backgroundColor: "grey" }}>
-                <Box
-                  style={{ width: `${progress}%`, backgroundColor: "lightgray" }}
-                  p={1}
-                  my={0.5}
-                ></Box>
+              <Box
+                style={{ width: `${progress}%`, backgroundColor: "lightgray" }}
+                p={1}
+                my={0.5}
+              ></Box>
             </Box>
             <p>What do you want to do today?</p>
             <Button
