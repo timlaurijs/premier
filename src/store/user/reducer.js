@@ -1,3 +1,4 @@
+
 import {
   LOG_OUT,
   LOGIN_SUCCESS,
@@ -11,7 +12,8 @@ const initialState = {
   progress: null,
   email: null,
   description: null,
-};
+  imageUrl: null,
+}
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -21,15 +23,15 @@ export default (state = initialState, { type, payload }) => {
         progress: payload,
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem("token", payload.token);
-      return { ...state, ...payload };
+      localStorage.setItem("token", payload.token)
+      return { ...state, ...payload }
     case LOG_OUT:
-      localStorage.removeItem("token");
-      return { ...initialState, token: null };
+      localStorage.removeItem("token")
+      return { ...initialState, token: null }
     case TOKEN_STILL_VALID:
-      return { ...state, ...payload };
+      return { ...state, ...payload }
 
     default:
-      return state;
+      return state
   }
-};
+}
