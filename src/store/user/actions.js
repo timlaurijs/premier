@@ -8,6 +8,7 @@ import {
   setMessage,
 } from "../appState/actions"
 
+export const UPDATE_SCORE = "UPDATE_SCORE"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID"
 export const LOG_OUT = "LOG_OUT"
@@ -35,13 +36,52 @@ export const login = (email, password) => {
     }
   }
 }
+
+const updateScore = (newScore) => {
+  return {
+    type: UPDATE_SCORE,
+    payload: newScore,
+  }
+}
+
 const loginSuccess = (userWithToken) => {
   return {
     type: LOGIN_SUCCESS,
     payload: userWithToken,
   }
 }
+
 export const logOut = () => ({ type: LOG_OUT })
+
+export const updateProgressUser = (score, userId) => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.patch(
+        `${apiUrl}/users/progress/${userId}`,
+        {
+          score,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      dispatch(updateScore(response.data.progress));
+      dispatch(showMessageWithTimeout("success", true, "account created"));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
 
 export const signUp = (name, description, email, password, imageUrl) => {
   return async (dispatch, getState) => {
@@ -123,7 +163,6 @@ export const updateUserData = (
           headers: { Authorization: `Bearer ${token}` },
         }
       )
-      console.log("yeah everything went Well")
       dispatch(getUserWithStoredToken())
       dispatch(appDoneLoading())
     } catch (error) {
@@ -134,7 +173,6 @@ export const updateUserData = (
         console.log(error.message)
         dispatch(setMessage("danger", true, error.message))
       }
-      console.log("something went wrons man")
       dispatch(appDoneLoading())
     }
   }

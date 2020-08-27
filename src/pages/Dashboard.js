@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react"
-import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 //store items
 import { selectUser } from "../store/user/selectors"
@@ -12,8 +12,30 @@ import ChangeUserData from "../components/ChangeUserData"
 import { Button, Box } from "@material-ui/core"
 
 export default function Dashboard() {
+
+   // const { token, name, progress } = useSelector(selectUser);
   const user = useSelector(selectUser)
   const [change, setChange] = useState(false)
+  const progress = user.progress
+  const [level, setLevel] = useState("amoebe");
+
+  useEffect(() => {
+    if (progress > 5 && progress <= 10) {
+      setLevel("mosquito");
+    } else if (progress > 10 && progress <= 15) {
+      setLevel("hamster");
+    } else if (progress > 15 && progress <= 20) {
+      setLevel("chihuahua");
+    } else if (progress > 20 && progress <= 30) {
+      setLevel("boar");
+    } else if (progress > 30 && progress <= 50) {
+      setLevel("tiger");
+    } else if (progress > 50 && progress <= 75) {
+      setLevel("elephant");
+    } else if (progress > 75) {
+      setLevel("mammoth");
+    }
+  });
 
   if (user.token) {
     return (
@@ -21,6 +43,13 @@ export default function Dashboard() {
         <h1>Welcome, {user.name}!</h1>
         {!change ? (
           <>
+            <Box style={{ width: "50%", backgroundColor: "grey" }}>
+                <Box
+                  style={{ width: `${progress}%`, backgroundColor: "lightgray" }}
+                  p={1}
+                  my={0.5}
+                ></Box>
+            </Box>
             <p>What do you want to do today?</p>
             <Button
               variant="contained"
@@ -54,7 +83,7 @@ export default function Dashboard() {
           </>
         ) : null}
       </Box>
-    )
+    );
   } else {
     return (
       <div>
@@ -65,6 +94,6 @@ export default function Dashboard() {
           </button>
         </Link>
       </div>
-    )
+    );
   }
 }
