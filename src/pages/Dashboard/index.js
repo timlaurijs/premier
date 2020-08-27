@@ -65,15 +65,15 @@ export default function Dashboard() {
               <p>
                 <i>Name</i>
               </p>
-              <p>{user.name}</p>
+              <h3>{user.name}</h3>
               <p>
                 <i>Email</i>
               </p>
-              <p>{user.email}</p>
+              <h3>{user.email}</h3>
               <p>
                 <i>Who are you?</i>
               </p>
-              <p>{user.description}</p>
+              <h3>{user.description}</h3>
             </Paper>
           </Box>
         </Grid>
@@ -84,11 +84,11 @@ export default function Dashboard() {
               <p>
                 <i>Current level: </i>
               </p>
-              <p>{progress}</p>
+              <h3>{progress}</h3>
               <p>
                 <i>Current rank:</i>
               </p>
-              <p>{level}</p>
+              <h3>{level}</h3>
               <Box
                 style={{
                   width: `${progress}%`,
@@ -98,6 +98,9 @@ export default function Dashboard() {
                 mt={0.5}
                 bottom={0}
               ></Box>
+              <Box>
+                <h2>Test your knowledge! 🤖</h2>
+              </Box>
             </Paper>
           </Box>
         </Grid>
