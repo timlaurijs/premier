@@ -131,9 +131,13 @@ export default function Homepage() {
           we are here for you to help you and guide you, but we strongly advice
           you to try out a couple of times first the challenges and see if you
           can figure it out, because that will prepare you for the real work
-          world. Enjoy Premiers coding game and let us know on Twitter how did
-          it go to celebrate your success together Happy Premiers coding time
-          from all of us XOXO
+          world.
+        </p>
+        <p>
+          {" "}
+          Enjoy Premiers coding game and let us know on Twitter how did it go to
+          celebrate your success together Happy Premiers coding time from all of
+          us XOXO
         </p>
       </div>
 
