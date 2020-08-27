@@ -22,12 +22,12 @@ import { Paper, CssBaseline, Container } from "@material-ui/core";
 const lightTheme = createMuiTheme({
   palette: {
     background: {
-      default: "#e6e7f7",
+      default: "#BC544B",
       paper: "#C0C0C0",
     },
     primary: {
-      main: "#4D5BF7", // here you can change the NavBar and Button color ("primary")
-      dark: "#0215DE ", // change the hover effect background color
+      main: "#00688B", // here you can change the NavBar and Button color ("primary")
+      dark: "#FF69B4", // change the hover effect background color
     },
     type: "light",
   },
@@ -36,11 +36,11 @@ const lightTheme = createMuiTheme({
 const darkTheme = createMuiTheme({
   palette: {
     background: {
-      default: "#3D4061",
+      default: "#00688B",
       paper: "#323648",
     },
     primary: {
-      main: "#f4a460", // here you can change the NavBar and Button color ("primary")
+      main: "#BC544B", // here you can change the NavBar and Button color ("primary")
       dark: "#DE1200", // change the hover effect background color"
     },
     type: "dark",

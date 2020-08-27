@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) =>
       minHeight: 400,
       minWidth: 380,
       alignItems: "center",
+      borderRadius: 10,
     },
     expand: {
       transform: "rotate(0deg)",
@@ -99,7 +100,7 @@ export default function PremierFounder(props) {
               size="medium"
               TransitionComponent={Fade}
               TransitionProps={{ timeout: 600 }}
-              title={`Link to ${props.name}'s gethub `}
+              title={<h2>{`Link to ${props.name}'s gethub `}</h2>}
             >
               <Link href={props.gitUrl} target="_blank" isExternal>
                 <Button
@@ -119,7 +120,7 @@ export default function PremierFounder(props) {
             open={state.open}
             onClose={handleClose}
             TransitionComponent={state.Transition}
-            message={props.description}
+            message={<h1>{props.description}</h1>}
             key={state.Transition.name}
           />
         </Typography>

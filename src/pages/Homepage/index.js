@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PremierFounder from "../../components/PremierFounder";
 import axios from "axios";
 import { API_URL_QUOTES } from "../../constants/constants";
-import { Box, Grid, Paper, Typography } from "@material-ui/core";
+import { Box, Grid, Paper, Snackbar, Button, Slide } from "@material-ui/core";
 import { useStyles } from "./styles";
 
 const premierFounders = [
@@ -44,12 +44,28 @@ function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min));
 }
 
+function TransitionDown(props) {
+  return <Slide {...props} direction="down" />;
+}
+
 export default function Homepage() {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const [transition, setTransition] = React.useState(undefined);
+
   const [inspirationalQuote, setInspirationalQuote] = useState({
     text: "",
     author: "",
   });
+  const handleClick = (Transition) => () => {
+    setTransition(() => Transition);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     async function fetchQuote() {
@@ -62,26 +78,41 @@ export default function Homepage() {
   }, []);
 
   return (
-    <Box mt={20}>
+    <Box mt={3} className={classes.root}>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Paper elevation={23}>
+        <Grid item xs={12} s>
+          <Paper elevation={23} className={classes.paper}>
             <h1>Welcome to Premier Coding!</h1>
             <h2>Who are we?</h2>
+            <Button
+              className={classes.paper}
+              color="primary"
+              variant="contained"
+              onClick={handleClick(TransitionDown)}
+            >
+              Get motivated
+            </Button>
           </Paper>
         </Grid>
-
-        <Grid item xs={12} sm={6}>
-          <Paper elevation={23}>
-            <p>
-              <h1>{inspirationalQuote.text}</h1>
-            </p>
-            <div>
-              {inspirationalQuote.author ? (
-                <p>- {inspirationalQuote.author}</p>
-              ) : null}
-            </div>
-          </Paper>
+        <Grid item xs={12}>
+          <Snackbar
+            className={classes.paper}
+            style={{ fontSize: 100 }}
+            open={open}
+            onClose={handleClose}
+            TransitionComponent={transition}
+            message={
+              <Box>
+                <h1>{inspirationalQuote.text}</h1>
+                <div>
+                  {inspirationalQuote.author ? (
+                    <p>- {inspirationalQuote.author}</p>
+                  ) : null}
+                </div>
+              </Box>
+            }
+            key={transition ? transition.name : ""}
+          />
         </Grid>
 
         {premierFounders.map((founder) => {

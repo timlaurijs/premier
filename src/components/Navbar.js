@@ -1,10 +1,10 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 // store items
-import { selectUser } from "../store/user/selectors"
-import { logOut } from "../store/user/actions"
+import { selectUser } from "../store/user/selectors";
+import { logOut } from "../store/user/actions";
 
 // Material-ui components and icons
 import {
@@ -16,14 +16,16 @@ import {
   makeStyles,
   Tooltip,
   Fade,
-} from "@material-ui/core"
-import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp"
-import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded"
+  Avatar,
+} from "@material-ui/core";
+import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp";
+import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded";
 
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
   button: {
-    margin: 4,
+    fontSize: 9,
+    margin: 2,
     color: "white",
     fontWeight: "bold",
     backgroundColor: "#01095E",
@@ -35,12 +37,12 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#010EAD", // does not work with a backgound image set as a background
     },
   },
-}))
+}));
 
 export default function Navbar(props) {
-  const classes = useStyles() // material ui classes
-  const { imageUrl, token } = useSelector(selectUser)
-  const dispatch = useDispatch()
+  const classes = useStyles(); // material ui classes
+  const { imageUrl, token, name } = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   function darkModeButton() {
     if (props.darkMode) {
@@ -51,9 +53,9 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <WbSunnySharpIcon fontSize="large" />
+          <WbSunnySharpIcon fontSize="small" />
         </IconButton>
-      )
+      );
     } else {
       return (
         <IconButton
@@ -62,9 +64,9 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <Brightness3RoundedIcon fontSize="large" />
+          <Brightness3RoundedIcon fontSize="small" />
         </IconButton>
-      )
+      );
     }
   }
 
@@ -77,6 +79,7 @@ export default function Navbar(props) {
         title="DASHBOARD"
       >
         <Button
+          size="small"
           variant="contained"
           className={classes.button}
           component={NavLink}
@@ -92,6 +95,7 @@ export default function Navbar(props) {
         title="LOGOUT"
       >
         <Button
+          size="small"
           variant="contained"
           className={classes.button}
           onClick={() => dispatch(logOut())}
@@ -99,13 +103,7 @@ export default function Navbar(props) {
           Log out
         </Button>
       </Tooltip>
-      {imageUrl ? (
-        <img
-          src={imageUrl}
-          style={{ height: "75px", padding: "5px" }}
-          alt="userImage"
-        ></img>
-      ) : null}
+      {imageUrl ? <Avatar src={imageUrl}></Avatar> : null}
     </>
   ) : (
     <>
@@ -116,6 +114,7 @@ export default function Navbar(props) {
         title="LOGIN"
       >
         <Button
+          size="small"
           variant="contained"
           className={classes.button}
           component={NavLink}
@@ -131,6 +130,7 @@ export default function Navbar(props) {
         title="SIGNUP"
       >
         <Button
+          size="small"
           variant="contained"
           className={classes.button}
           component={NavLink}
@@ -140,7 +140,7 @@ export default function Navbar(props) {
         </Button>
       </Tooltip>
     </>
-  )
+  );
 
   return (
     <AppBar>
@@ -154,6 +154,7 @@ export default function Navbar(props) {
           title="HOME"
         >
           <Button
+            size="small"
             className={classes.button}
             variant="contained"
             component={NavLink}
@@ -169,12 +170,13 @@ export default function Navbar(props) {
           title="QUIZ"
         >
           <Button
+            size="small"
             variant="contained"
             className={classes.button}
             component={NavLink}
             to="/triviaquiz"
           >
-            triviaquiz
+            quiz
           </Button>
         </Tooltip>
         <Tooltip
@@ -184,16 +186,17 @@ export default function Navbar(props) {
           title="CODING-GAME"
         >
           <Button
+            size="small"
             variant="contained"
             className={classes.button}
             component={NavLink}
             to="/codinggame"
           >
-            Coding game
+            Game
           </Button>
         </Tooltip>
         {loginLogoutControls}
       </Toolbar>
     </AppBar>
-  )
+  );
 }
