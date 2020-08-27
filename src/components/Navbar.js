@@ -24,7 +24,7 @@ import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded"
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
   button: {
-    fontSize: 9,
+    fontSize: 12,
     margin: 2,
     color: "white",
     fontWeight: "bold",
@@ -78,15 +78,17 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="DASHBOARD"
       >
-        <Button
-          size="small"
-          variant="contained"
-          className={classes.button}
-          component={NavLink}
-          to="/dashboard"
-        >
-          Dashboard
-        </Button>
+        <Box ml={6}>
+          <Button
+            size="small"
+            variant="contained"
+            className={classes.button}
+            component={NavLink}
+            to="/dashboard"
+          >
+            Dashboard
+          </Button>
+        </Box>
       </Tooltip>
       <Tooltip
         size="medium"
@@ -94,16 +96,23 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="LOGOUT"
       >
-        <Button
-          size="small"
-          variant="contained"
-          className={classes.button}
-          onClick={() => dispatch(logOut())}
-        >
-          Log out
-        </Button>
+        <Box ml={1}>
+          <Button
+            size="small"
+            variant="contained"
+            className={classes.button}
+            onClick={() => dispatch(logOut())}
+          >
+            Log out
+          </Button>
+        </Box>
       </Tooltip>
-      {imageUrl ? <Avatar src={imageUrl}></Avatar> : null}
+      {imageUrl ? (
+        <Avatar
+          style={{ height: 80, width: 80, marginLeft: 50 }}
+          src={imageUrl}
+        ></Avatar>
+      ) : null}
     </>
   ) : (
     <>
@@ -113,15 +122,17 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="LOGIN"
       >
-        <Button
-          size="small"
-          variant="contained"
-          className={classes.button}
-          component={NavLink}
-          to="/login"
-        >
-          Login
-        </Button>
+        <Box ml={6}>
+          <Button
+            size="small"
+            variant="contained"
+            className={classes.button}
+            component={NavLink}
+            to="/login"
+          >
+            Login
+          </Button>
+        </Box>
       </Tooltip>
       <Tooltip
         size="medium"
@@ -129,15 +140,17 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="SIGNUP"
       >
-        <Button
-          size="small"
-          variant="contained"
-          className={classes.button}
-          component={NavLink}
-          to="/signup"
-        >
-          Signup
-        </Button>
+        <Box ml={1}>
+          <Button
+            size="small"
+            variant="contained"
+            className={classes.button}
+            component={NavLink}
+            to="/signup"
+          >
+            Signup
+          </Button>
+        </Box>
       </Tooltip>
     </>
   )
@@ -145,7 +158,8 @@ export default function Navbar(props) {
   return (
     <AppBar>
       <Toolbar>
-        <Box>{darkModeButton()}</Box>
+        <img src={logo} style={{ height: 100, left: 0 }}></img>
+        <Box ml={3}>{darkModeButton()}</Box>
         {/* Tooltip can display the button name */}
         <Tooltip
           size="medium"
@@ -153,15 +167,17 @@ export default function Navbar(props) {
           TransitionProps={{ timeout: 600 }}
           title="HOME"
         >
-          <Button
-            size="small"
-            className={classes.button}
-            variant="contained"
-            component={NavLink}
-            to="/"
-          >
-            Home
-          </Button>
+          <Box ml={5}>
+            <Button
+              size="small"
+              className={classes.button}
+              variant="contained"
+              component={NavLink}
+              to="/"
+            >
+              Home
+            </Button>
+          </Box>
         </Tooltip>
         <Tooltip
           size="medium"
@@ -169,15 +185,17 @@ export default function Navbar(props) {
           TransitionProps={{ timeout: 600 }}
           title="QUIZ"
         >
-          <Button
-            size="small"
-            variant="contained"
-            className={classes.button}
-            component={NavLink}
-            to="/triviaquiz"
-          >
-            quiz
-          </Button>
+          <Box ml={1}>
+            <Button
+              size="small"
+              variant="contained"
+              className={classes.button}
+              component={NavLink}
+              to="/triviaquiz"
+            >
+              quiz
+            </Button>
+          </Box>
         </Tooltip>
         <Tooltip
           size="medium"
@@ -185,17 +203,18 @@ export default function Navbar(props) {
           TransitionProps={{ timeout: 600 }}
           title="CODING-GAME"
         >
-          <Button
-            size="small"
-            variant="contained"
-            className={classes.button}
-            component={NavLink}
-            to="/codinggame"
-          >
-            Game
-          </Button>
+          <Box ml={1}>
+            <Button
+              size="small"
+              variant="contained"
+              className={classes.button}
+              component={NavLink}
+              to="/codinggame"
+            >
+              Game
+            </Button>
+          </Box>
         </Tooltip>
-        <img src={logo} style={{ height: 100 }}></img>
         {loginLogoutControls}
       </Toolbar>
     </AppBar>
