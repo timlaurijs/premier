@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import PremierFounder from "../components/PremierFounder";
 import axios from "axios";
 import { API_URL_QUOTES } from "../constants/constants";
-import { Button, Box, Grid } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Box, Grid } from "@material-ui/core";
 
 const premierFounders = [
   {
@@ -11,24 +10,30 @@ const premierFounders = [
     description: "Loves coffee!",
     imageUrl:
       "https://avatars0.githubusercontent.com/u/66206483?s=400&u=c2a444fe4defb6454d8f0876bb6538ed653c2111&v=4",
+    gitUrl: "https://github.com/mayallzObject",
   },
+
   {
     name: "Karem",
     description: "Cat lady!",
     imageUrl:
       "https://ca.slack-edge.com/T0DK39WAJ-U014DDWRCQP-4c57575d19a9-512",
+    gitUrl: "https://github.com/Karem1986",
   },
   {
     name: "Tim",
     description: "coffee addict!",
     imageUrl:
       "https://avatars0.githubusercontent.com/u/65892566?s=400&u=e2fc9b1339cf9f3d535a62948b6e5281fcb9a287&v=4",
+    gitUrl: "https://github.com/timlaurijs",
   },
+
   {
     name: "Nina",
     description: "Dog lover!",
     imageUrl:
       "https://ca.slack-edge.com/T0DK39WAJ-U0153LFMCQL-678c7dd328ad-512",
+    gitUrl: "https://github.com/grakify90",
   },
 ];
 
@@ -79,6 +84,7 @@ export default function Homepage() {
                 name={founder.name}
                 description={founder.description}
                 imageUrl={founder.imageUrl}
+                gitUrl={founder.gitUrl}
               />
             </Grid>
           );
