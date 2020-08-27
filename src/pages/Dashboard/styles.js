@@ -1,30 +1,15 @@
-import { makeStyles, createStyles } from "@material-ui/core";
-import { red } from "@material-ui/core/colors";
+import { makeStyles, createStyles } from "@material-ui/core"
+import { red } from "@material-ui/core/colors"
 
 export const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      maxWidth: 430,
-      maxHigh: 630,
+    pageTitle: {
+      marginLeft: 30,
+      marginTop: 30,
     },
-    media: {
-      paddingTop: "56.25%", // 16:9
-      minHeight: 400,
-      minWidth: 380,
-      alignItems: "center",
-    },
-    expand: {
-      transform: "rotate(0deg)",
-      marginLeft: "auto",
-      transition: theme.transitions.create("transform", {
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-    expandOpen: {
-      transform: "rotate(180deg)",
-    },
-    avatar: {
-      backgroundColor: red[500],
+    h1: {
+      margin: 0,
+      fontSize: 30,
     },
   })
-);
+)
