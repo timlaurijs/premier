@@ -85,7 +85,7 @@ export default function Homepage() {
             <h1>Welcome to Premier Coding!</h1>
             <h2>Who are we?</h2>
             <Button
-              className={classes.paper}
+              // className={classes.paper}
               color="primary"
               variant="contained"
               onClick={handleClick(TransitionDown)}

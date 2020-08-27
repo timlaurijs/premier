@@ -8,10 +8,32 @@ import { updateProgressUser } from "../store/user/actions";
 import { selectUser } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { selectExercise } from "../store/codinggame/selector";
-import { Box, Grid, Paper, Button, Typography } from "@material-ui/core";
+import {
+  Box,
+  Grid,
+  Paper,
+  Button,
+  Typography,
+  makeStyles,
+} from "@material-ui/core";
 import AnswerCard from "../components/AnswerCard";
 
+export const useStyles = makeStyles({
+  buttonStart: {
+    borderRadius: 100,
+    fontSize: 15,
+    backgroundColor: "#629632",
+    margin: 10,
+    fontWeight: "bold",
+    "&:hover": {
+      color: "yellow",
+      background: "#397D02",
+    },
+  },
+});
+
 export default function CodingExercises() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const [questions, setQuestions] = useState([]);
   const [number, setNumber] = useState(0);
@@ -54,16 +76,7 @@ export default function CodingExercises() {
   };
 
   return (
-    <Box
-      mt={10}
-      style={{
-        fontSize: 20,
-        marginLeft: 50,
-        marginRight: 50,
-        marginBottom: 50,
-        maxWidth: "100%",
-      }}
-    >
+    <Box mt={10}>
       <Grid container spacing={10}>
         <Grid item xs={12} style={{ justifyContent: "center" }}>
           <Typography component="div">
@@ -84,8 +97,8 @@ export default function CodingExercises() {
       </Grid>
       {!gameOver && (
         <Grid container spacing={10}>
-          <Grid item xs={12} sm={6}>
-            <Paper>
+          <Grid item xs={12} sm={9}>
+            <Paper elevation={23}>
               <ExerciseCard
                 id={exercises[number].id}
                 exercise={exercises[number].exercise}
@@ -97,26 +110,44 @@ export default function CodingExercises() {
               />
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <AnswerCard hint={exercises[number].hint} />
+          <Grid item xs={12} sm={3}>
+            <Paper elevation={23}>
+              <AnswerCard hint={exercises[number].hint} />
+            </Paper>
           </Grid>
         </Grid>
       )}
       <Box className="primary" mt={1}>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <Button variant="contained" color="primary" onClick={startGame}>
+          <Button
+            className={classes.buttonStart}
+            variant="contained"
+            color="primary"
+            onClick={startGame}
+          >
             Play new game
           </Button>
         ) : null}
         {number > 0 && userAnswers.length === TOTAL_QUESTIONS ? (
-          <Button variant="contained" color="secondary" onClick={submitScore}>
+          <Button
+            elevation={23}
+            className={classes.buttonStart}
+            variant="contained"
+            color="secondary"
+            onClick={submitScore}
+          >
             Submit Score
           </Button>
         ) : null}
       </Box>
       <Box>
         {!gameOver && (
-          <Button variant="contained" color="primary" onClick={nextQuestion}>
+          <Button
+            className={classes.buttonStart}
+            variant="contained"
+            color="primary"
+            onClick={nextQuestion}
+          >
             Next Question
           </Button>
         )}

@@ -100,7 +100,7 @@ export default function PremierFounder(props) {
               size="medium"
               TransitionComponent={Fade}
               TransitionProps={{ timeout: 600 }}
-              title={<h2>{`Link to ${props.name}'s gethub `}</h2>}
+              title={<h2>{`Go to ${props.name}'s GitHub `}</h2>}
             >
               <Link href={props.gitUrl} target="_blank" isExternal>
                 <Button
