@@ -1,36 +1,39 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
 
 // Redux store
-import { login } from "../store/user/actions";
-import { selectToken } from "../store/user/selectors";
+import { login } from "../store/user/actions"
+import { selectToken } from "../store/user/selectors"
 
 //Mui components
-import { Button, Box, TextField } from "@material-ui/core";
+import { Button, Box, TextField } from "@material-ui/core"
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-  const token = useSelector(selectToken);
-  const history = useHistory();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const dispatch = useDispatch()
+  const token = useSelector(selectToken)
+  const history = useHistory()
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/");
+      history.push("/")
     }
-  }, [token, history]);
+  }, [token, history])
 
   const formHandler = (event) => {
-    event.preventDefault();
-    console.log(`email: ${email}, password: ${password}`);
-    dispatch(login(email, password));
-  };
+    event.preventDefault()
+    console.log(`email: ${email}, password: ${password}`)
+    dispatch(login(email, password))
+  }
   return (
     <Box mt={10}>
       <div className="Login">
-        <form onSubmit={formHandler} style={{ marginTop: 30 }}>
+        <form
+          onSubmit={formHandler}
+          style={{ marginTop: "10%", marginLeft: "5%" }}
+        >
           {/* <div style={{ display: "block" }}> */}
           {/* <label htmlFor="email" style={{ marginRight: 10 }}>
             {" "}
@@ -76,7 +79,7 @@ const Login = () => {
         </form>
       </div>
     </Box>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

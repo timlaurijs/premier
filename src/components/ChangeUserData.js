@@ -8,7 +8,7 @@ import { storage } from "../Firebase"
 import { updateUserData, getUserWithStoredToken } from "../store/user/actions"
 
 //Material ui
-import { Button } from "@material-ui/core"
+import { Button, Box, Grid } from "@material-ui/core"
 
 const ChangeUserData = (props) => {
   const dispatch = useDispatch()
@@ -76,42 +76,66 @@ const ChangeUserData = (props) => {
 
   return (
     <form onSubmit={formHandler}>
-      <label htmlFor="name"> Name </label>
-      <input
-        type="text"
-        onChange={(event) => setName(event.target.value)}
-        placeholder={userName}
-        name="name"
-        required
-      ></input>
-      <label htmlFor="description"> Description </label>
-      <input
-        type="text"
-        onChange={(event) => setDescription(event.target.value)}
-        placeholder={userDescription}
-        name="description"
-        required
-      ></input>
-      <label htmlFor="email"> Email </label>
-      <input
-        type="text"
-        onChange={(event) => setEmail(event.target.value)}
-        placeholder={userEmail}
-        name="email"
-        required
-      ></input>
-      <input type="file" onChange={handleChange} required />
-      <img
-        src={!url ? userImageUrl : url || "http://via.placeholder.com/300"}
-        alt="firebaseimage"
-        style={{ width: "300px" }}
-      />
-      <button type="button" onClick={uploadImage}>
-        Upload
-      </button>
-      <Button variant="contained" color="primary" type="submit">
-        Submit
-      </Button>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
+            <label htmlFor="name"> Name </label>
+            <input
+              type="text"
+              onChange={(event) => setName(event.target.value)}
+              placeholder={userName}
+              name="name"
+              required
+            ></input>
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <label htmlFor="description"> Description </label>
+            <input
+              type="text"
+              onChange={(event) => setDescription(event.target.value)}
+              placeholder={userDescription}
+              name="description"
+              required
+            ></input>
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <label htmlFor="email"> Email </label>
+            <input
+              type="text"
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder={userEmail}
+              name="email"
+              required
+            ></input>
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <label htmlFor="email"> Choose your new avatar </label>
+            <input type="file" onChange={handleChange} required />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <label htmlFor="email"> Upload your new avatar </label>
+            <button type="button" onClick={uploadImage}>
+              Upload
+            </button>
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <Button variant="contained" color="primary" type="submit">
+              Sava changes
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <img
+            src={!url ? userImageUrl : url || "http://via.placeholder.com/300"}
+            alt="firebaseimage"
+            style={{ width: "300px" }}
+          />
+          <p>
+            <i>Current avatar</i>
+          </p>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} sm={6}></Grid>
     </form>
   )
 }

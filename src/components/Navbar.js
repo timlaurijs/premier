@@ -1,10 +1,10 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-
+import React from "react"
+import { NavLink } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import logo from "../assets/logo.svg"
 // store items
-import { selectUser } from "../store/user/selectors";
-import { logOut } from "../store/user/actions";
+import { selectUser } from "../store/user/selectors"
+import { logOut } from "../store/user/actions"
 
 // Material-ui components and icons
 import {
@@ -17,15 +17,17 @@ import {
   Tooltip,
   Fade,
   Avatar,
+
 } from "@material-ui/core";
 import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp";
 import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded";
 import RowingIcon from "@material-ui/icons/Rowing";
 
+
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
   button: {
-    fontSize: 9,
+    fontSize: 12,
     margin: 2,
     color: "white",
     fontWeight: "bold",
@@ -38,12 +40,12 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#010EAD", // does not work with a backgound image set as a background
     },
   },
-}));
+}))
 
 export default function Navbar(props) {
-  const classes = useStyles(); // material ui classes
-  const { imageUrl, token, name } = useSelector(selectUser);
-  const dispatch = useDispatch();
+  const classes = useStyles() // material ui classes
+  const { imageUrl, token, name } = useSelector(selectUser)
+  const dispatch = useDispatch()
 
   function darkModeButton() {
     if (props.darkMode) {
@@ -56,7 +58,7 @@ export default function Navbar(props) {
         >
           <WbSunnySharpIcon fontSize="small" />
         </IconButton>
-      );
+      )
     } else {
       return (
         <IconButton
@@ -67,7 +69,7 @@ export default function Navbar(props) {
         >
           <RowingIcon fontSize="small" />
         </IconButton>
-      );
+      )
     }
   }
 
@@ -79,15 +81,17 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="DASHBOARD"
       >
-        <Button
-          size="small"
-          variant="contained"
-          className={classes.button}
-          component={NavLink}
-          to="/dashboard"
-        >
-          Dashboard
-        </Button>
+        <Box ml={6}>
+          <Button
+            size="small"
+            variant="contained"
+            className={classes.button}
+            component={NavLink}
+            to="/dashboard"
+          >
+            Dashboard
+          </Button>
+        </Box>
       </Tooltip>
       <Tooltip
         size="medium"
@@ -95,16 +99,23 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="LOGOUT"
       >
-        <Button
-          size="small"
-          variant="contained"
-          className={classes.button}
-          onClick={() => dispatch(logOut())}
-        >
-          Log out
-        </Button>
+        <Box ml={1}>
+          <Button
+            size="small"
+            variant="contained"
+            className={classes.button}
+            onClick={() => dispatch(logOut())}
+          >
+            Log out
+          </Button>
+        </Box>
       </Tooltip>
-      {imageUrl ? <Avatar src={imageUrl}></Avatar> : null}
+      {imageUrl ? (
+        <Avatar
+          style={{ height: 80, width: 80, marginLeft: 50 }}
+          src={imageUrl}
+        ></Avatar>
+      ) : null}
     </>
   ) : (
     <>
@@ -114,15 +125,17 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="LOGIN"
       >
-        <Button
-          size="small"
-          variant="contained"
-          className={classes.button}
-          component={NavLink}
-          to="/login"
-        >
-          Login
-        </Button>
+        <Box ml={6}>
+          <Button
+            size="small"
+            variant="contained"
+            className={classes.button}
+            component={NavLink}
+            to="/login"
+          >
+            Login
+          </Button>
+        </Box>
       </Tooltip>
       <Tooltip
         size="medium"
@@ -130,23 +143,26 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="SIGNUP"
       >
-        <Button
-          size="small"
-          variant="contained"
-          className={classes.button}
-          component={NavLink}
-          to="/signup"
-        >
-          Signup
-        </Button>
+        <Box ml={1}>
+          <Button
+            size="small"
+            variant="contained"
+            className={classes.button}
+            component={NavLink}
+            to="/signup"
+          >
+            Signup
+          </Button>
+        </Box>
       </Tooltip>
     </>
-  );
+  )
 
   return (
     <AppBar>
       <Toolbar>
-        <Box>{darkModeButton()}</Box>
+        <img src={logo} style={{ height: 100, left: 0 }}></img>
+        <Box ml={3}>{darkModeButton()}</Box>
         {/* Tooltip can display the button name */}
         <Tooltip
           size="medium"
@@ -154,15 +170,17 @@ export default function Navbar(props) {
           TransitionProps={{ timeout: 600 }}
           title="HOME"
         >
-          <Button
-            size="small"
-            className={classes.button}
-            variant="contained"
-            component={NavLink}
-            to="/"
-          >
-            Home
-          </Button>
+          <Box ml={5}>
+            <Button
+              size="small"
+              className={classes.button}
+              variant="contained"
+              component={NavLink}
+              to="/"
+            >
+              Home
+            </Button>
+          </Box>
         </Tooltip>
         <Tooltip
           size="medium"
@@ -170,15 +188,17 @@ export default function Navbar(props) {
           TransitionProps={{ timeout: 600 }}
           title="QUIZ"
         >
-          <Button
-            size="small"
-            variant="contained"
-            className={classes.button}
-            component={NavLink}
-            to="/triviaquiz"
-          >
-            quiz
-          </Button>
+          <Box ml={1}>
+            <Button
+              size="small"
+              variant="contained"
+              className={classes.button}
+              component={NavLink}
+              to="/triviaquiz"
+            >
+              quiz
+            </Button>
+          </Box>
         </Tooltip>
         <Tooltip
           size="medium"
@@ -186,18 +206,20 @@ export default function Navbar(props) {
           TransitionProps={{ timeout: 600 }}
           title="CODING-GAME"
         >
-          <Button
-            size="small"
-            variant="contained"
-            className={classes.button}
-            component={NavLink}
-            to="/codinggame"
-          >
-            Game
-          </Button>
+          <Box ml={1}>
+            <Button
+              size="small"
+              variant="contained"
+              className={classes.button}
+              component={NavLink}
+              to="/codinggame"
+            >
+              Game
+            </Button>
+          </Box>
         </Tooltip>
         {loginLogoutControls}
       </Toolbar>
     </AppBar>
-  );
+  )
 }
