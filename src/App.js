@@ -1,58 +1,59 @@
-import React, { useEffect, useState } from "react"
-import { Switch, Route } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect, useState } from "react";
+import { Switch, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 //Pages
-import Homepage from "./pages/Homepage"
-import Dashboard from "./pages/Dashboard"
-import Login from "./pages/Login"
-import SignUp from "./pages/SignUp"
-import CodingGame from "./pages/CodingGame"
+import Homepage from "./pages/Homepage";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import CodingGame from "./pages/CodingGame";
 
 // Components
-import Navbar from "./components/Navbar"
-import Motivation from "./pages/Motivation"
-import TriviaQuiz from "./pages/TriviaQuiz"
+import Navbar from "./components/Navbar";
+import Motivation from "./pages/Motivation";
+import TriviaQuiz from "./pages/TriviaQuiz";
 
 // Mui components
-import { getUserWithStoredToken } from "./store/user/actions"
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
-import { Paper, CssBaseline, Container } from "@material-ui/core"
+import { getUserWithStoredToken } from "./store/user/actions";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { Paper, CssBaseline, Container } from "@material-ui/core";
 
 const lightTheme = createMuiTheme({
   palette: {
     background: {
       default: "#e6e7f7",
+      paper: "#C0C0C0",
     },
     primary: {
       main: "#4D5BF7", // here you can change the NavBar and Button color ("primary")
       dark: "#0215DE ", // change the hover effect background color
     },
     type: "light",
-    // background: { paper: "#7A9D96" },
   },
-})
+});
 
 const darkTheme = createMuiTheme({
   palette: {
     background: {
       default: "#3D4061",
+      paper: "#323648",
     },
     primary: {
-      main: "#F7594A", // here you can change the NavBar and Button color ("primary")
+      main: "#f4a460", // here you can change the NavBar and Button color ("primary")
       dark: "#DE1200", // change the hover effect background color"
     },
     type: "dark",
   },
-})
+});
 
 function App() {
-  const [darkMode, set_darkMode] = useState(true)
-  const dispatch = useDispatch()
+  const [darkMode, set_darkMode] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserWithStoredToken())
-  }, [dispatch])
+    dispatch(getUserWithStoredToken());
+  }, [dispatch]);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -70,7 +71,7 @@ function App() {
         </Switch>
       </Container>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

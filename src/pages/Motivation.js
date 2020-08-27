@@ -27,8 +27,8 @@ export default function Motivation() {
   }, []);
 
   return (
-    <Box mt={10} style={{ fontSize: 25 }}>
-      <h1 style={{ margin: "30px" }}>
+    <Box mt={10} style={{ fontSize: 25, alignText: "center" }}>
+      <h1 style={{ margin: "30px", alignText: "center" }}>
         <i>{inspirationalQuote.text}</i> - {inspirationalQuote.author}
       </h1>
       <Button
