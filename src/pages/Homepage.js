@@ -92,6 +92,51 @@ export default function Homepage() {
           );
         })}
       </Box>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h2 style={{ fontSize: 25, marginTop: "10px" }}>Our story</h2>
+        <h4>Why did we started to code?</h4>
+        <p>
+          We all come from different backgrounds, none of us started to code as
+          the usual nerdy 12 years old wanting to develop their own games.
+          Instead, we did all sort of different things and just like you, we did
+          not know what we wanted in our lives until one day, suddenly that
+          changed for the better.
+        </p>
+        <p>
+          It was not easy for any of us to learn how to code, and we are all
+          still learning but what keeps us motivated is the goal to help other
+          people to be motivated and try out coding for fun, because we believe
+          that if you do something and you also enjoy it, then wonders can
+          happen, who knows? you migh be the next Mark Zuckerberg!
+          <p>
+            For example, Karem started on this path by finding out about
+            blogging with WordPress, she did not know she was going to end up
+            doing a bootcamp a year later and deciding to work as a developer.
+            Nina decided to try it our after her trip to Japan when a friend
+            suggested the idea, she gave it a go and found joy in it. So, you
+            can get started today and try out here, if this is what you want to
+            do for the rest of your live, we really hope you do!
+          </p>
+        </p>
+        <p>
+          {" "}
+          And lastly but not least, if you ever get stuck or have any questions,
+          we are here for you to help you and guide you, but we strongly advice
+          you to try out a couple of times first the challenges and see if you
+          can figure it out, because that will prepare you for the real work
+          world. Enjoy Premiers coding game and let us know on Twitter how did
+          it go to celebrate your success together Happy Premiers coding time
+          from all of us XOXO
+        </p>
+      </div>
+
       <div style={{ margin: "30px", textAlign: "center" }}>
         <p style={{ fontSize: 20 }}>
           <i>{inspirationalQuote.text}</i>
