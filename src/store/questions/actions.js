@@ -32,8 +32,6 @@ export const fetchQuestions = () => async (dispatch, getState) => {
       ]),
     }));
 
-    console.log(data);
-
     dispatch(questionsFetched(data));
   } catch (error) {
     console.log(error);
