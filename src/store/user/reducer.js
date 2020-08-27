@@ -1,14 +1,25 @@
-import { LOG_OUT, LOGIN_SUCCESS, TOKEN_STILL_VALID } from "./actions";
+import {
+  LOG_OUT,
+  LOGIN_SUCCESS,
+  UPDATE_SCORE,
+  TOKEN_STILL_VALID,
+} from "./actions";
 
 const initialState = {
   token: localStorage.getItem("token"),
   name: null,
+  progress: null,
   email: null,
   description: null,
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
+    case UPDATE_SCORE:
+      return {
+        ...state,
+        progress: payload,
+      };
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
       return { ...state, ...payload };
