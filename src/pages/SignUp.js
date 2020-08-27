@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { selectToken } from "../store/user/selectors"
-import { useHistory } from "react-router-dom"
-import { signUp } from "../store/user/actions"
-import { Box, Button, IconButton, makeStyles } from "@material-ui/core"
-import PhotoCamera from "@material-ui/icons/PhotoCamera"
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectToken } from "../store/user/selectors";
+import { useHistory } from "react-router-dom";
+import { signUp } from "../store/user/actions";
+import { Box, Button, IconButton, makeStyles } from "@material-ui/core";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 // FireBase
-import { storage } from "../Firebase"
+import { storage } from "../Firebase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,10 +18,9 @@ const useStyles = makeStyles((theme) => ({
   input: {
     display: "none",
   },
-}))
+}));
 
 const SignUp = () => {
-
   const classes = useStyles();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -36,18 +35,17 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
-      setImage(e.target.files[0])
+      setImage(e.target.files[0]);
     }
-  }
+  };
 
   console.log("image: ", image);
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/")
+      history.push("/");
     }
-  }, [token, history])
-
+  }, [token, history]);
 
   //THis is how to work with images in Firebase
   const formHandler = async (event) => {
@@ -115,7 +113,15 @@ const SignUp = () => {
           ></input>
         </div>
         <div style={{ display: "block" }}>
-
+          <label htmlFor="name"> About you </label>
+          <input
+            type="textarea"
+            onChange={(event) => setDescription(event.target.value)}
+            placeholder="description"
+            name="description"
+          ></input>
+        </div>
+        <div style={{ display: "block" }}>
           <label htmlFor="email"> Email </label>
           <input
             type="text"
@@ -151,7 +157,7 @@ const SignUp = () => {
         </Button>
       </form>
     </Box>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
