@@ -17,9 +17,12 @@ import {
   Tooltip,
   Fade,
   Avatar,
-} from "@material-ui/core"
-import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp"
-import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded"
+
+} from "@material-ui/core";
+import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp";
+import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded";
+import RowingIcon from "@material-ui/icons/Rowing";
+
 
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
@@ -64,7 +67,7 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <Brightness3RoundedIcon fontSize="small" />
+          <RowingIcon fontSize="small" />
         </IconButton>
       )
     }

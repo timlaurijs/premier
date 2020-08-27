@@ -7,7 +7,7 @@ import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/javascript-hint";
 import { Controlled as CodeMirror } from "react-codemirror2";
 import { equal } from "../equal";
-import { Box, Button } from "@material-ui/core";
+import { Box, Button, makeStyles } from "@material-ui/core";
 import ComputerIcon from "@material-ui/icons/Computer";
 
 const codeMirrorOptions = {
@@ -17,7 +17,18 @@ const codeMirrorOptions = {
   lineWrapping: true,
 };
 
+export const useStyles = makeStyles({
+  buttonStart: {
+    borderRadius: 100,
+    fontSize: 15,
+
+    margin: 10,
+    fontWeight: "bold",
+  },
+});
+
 export default function ExerciseCard(props) {
+  const classes = useStyles();
   const [code, setCode] = useState("");
   const [testOutput, setTestOutput] = useState("");
   const [output, setOutput] = useState(0);
@@ -80,11 +91,7 @@ export default function ExerciseCard(props) {
       <p>{testOutput}</p>
       <Button
         endIcon={<ComputerIcon />}
-        style={{
-          marginTop: 20,
-          borderRadius: 100,
-          fontSize: 20,
-        }}
+        className={classes.buttonStart}
         color="primary"
         variant="contained"
         onClick={() => {
@@ -94,11 +101,7 @@ export default function ExerciseCard(props) {
         Test
       </Button>
       <Button
-        style={{
-          marginTop: 20,
-          borderRadius: 100,
-          fontSize: 20,
-        }}
+        className={classes.buttonStart}
         color="primary"
         variant="contained"
         onClick={increaseScoreOrNot}
