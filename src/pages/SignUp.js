@@ -48,9 +48,7 @@ const SignUp = () => {
   }, [token, history]);
 
   //THis is how to work with images in Firebase
-  const formHandler = async (event) => {
-    event.preventDefault();
-
+  const uploadImage = async () => {
     try {
       const uploadTask = storage.ref(`images/${image.name}`).put(image);
       uploadTask.on(
@@ -71,16 +69,20 @@ const SignUp = () => {
             .getDownloadURL()
             .then((url) => {
               setUrl(url);
-              console.log(
-                `name: ${name}, description: ${description}, email: ${email}, password: ${password}, image: ${url}`
-              );
-              dispatch(signUp(name, description, email, password, url));
             });
         }
       );
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  const formHandler = (event) => {
+    event.preventDefault();
+    console.log(
+      `name: ${name}, description: ${description}, email: ${email}, password: ${password}, image: ${url}`
+    );
+    dispatch(signUp(name, description, email, password, url));
   };
 
   return (
@@ -144,15 +146,17 @@ const SignUp = () => {
           style={{ marginTop: 10 }}
           src={url || "http://via.placeholder.com/300"}
           alt="firebaseimage"
+          style={{ width: "300px" }}
         />
+        <button type="button" onClick={uploadImage} style={{ marginTop: 10 }}>
+          Upload
+        </button>
         <Button
-          type="submit"
           variant="contained"
           color="primary"
           type="submit"
           style={{ marginTop: 10 }}
         >
-          {" "}
           Submit
         </Button>
       </form>
