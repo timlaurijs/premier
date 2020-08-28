@@ -58,6 +58,7 @@ const QuestionCard = ({
     <Grid container spacing={2}>
       <Grid item xs={12} sm={12}>
         <Paper
+          elevation={23}
           className={classes.title}
           style={{ minHeight: 600, borderRadius: 100, fontWeight: "bold" }}
         >

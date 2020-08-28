@@ -5,6 +5,7 @@ import logo from "../assets/logo.svg";
 // store items
 import { selectUser } from "../store/user/selectors";
 import { logOut } from "../store/user/actions";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 // Material-ui components and icons
 import {
@@ -22,6 +23,7 @@ import {
 import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp";
 import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded";
 import RowingIcon from "@material-ui/icons/Rowing";
+import Brightness7Icon from "@material-ui/icons/Brightness7";
 
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +55,7 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <WbSunnySharpIcon fontSize="large" />
+          <Brightness7Icon fontSize="large" />
         </IconButton>
       );
     } else {
@@ -64,7 +66,7 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <RowingIcon fontSize="large" />
+          <Brightness4Icon fontSize="large" />
         </IconButton>
       );
     }
