@@ -126,13 +126,16 @@ export default function CodingExercises() {
 
   return (
     <Box mt={10} className={classes.root}>
-      <Button
-        color="primary"
-        variant="contained"
-        onClick={handleClick(TransitionDown)}
-      >
-        Get motivated
-      </Button>
+      <Grid item xs={12} s>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={handleClick(TransitionDown)}
+        >
+          Get motivated
+        </Button>
+      </Grid>
+
       <Grid item xs={12}>
         <Snackbar
           className={classes.paper}
@@ -196,6 +199,7 @@ export default function CodingExercises() {
             Play new game
           </Button>
         ) : null}
+
         {number > 0 && userAnswers.length === TOTAL_QUESTIONS ? (
           <Button
             elevation={23}
