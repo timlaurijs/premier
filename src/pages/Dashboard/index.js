@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 //store items
@@ -10,7 +10,7 @@ import { selectUser } from "../../store/user/selectors";
 import ChangeUserData from "../../components/ChangeUserData";
 
 //material ui
-import { Button, Box, Grid, Paper, sizing } from "@material-ui/core";
+import { Button, Box, Grid, Paper, Fade, Tooltip } from "@material-ui/core";
 import { useStyles } from "./styles.js";
 
 export default function Dashboard() {
@@ -60,26 +60,16 @@ export default function Dashboard() {
           </Box>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Box ml={4}>
-            <Paper elevation={23}>
-              <p>
-                <i>Name</i>
-              </p>
-              <h3>{user.name}</h3>
-              <p>
-                <i>Email</i>
-              </p>
-              <h3>{user.email}</h3>
-              <p>
-                <i>Who are you?</i>
-              </p>
-              <h3>{user.description}</h3>
-            </Paper>
-          </Box>
+          <Paper elevation={23}>
+            <h3>Name: {user.name}</h3>
+            <h4>About me: {user.description}</h4>
+            <h3>Current level: {level}</h3>
+            <h3>Email: {user.email}</h3>
+          </Paper>
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <Box mr={6}>
+          <Box>
             <Paper elevation={23}>
               <p>
                 <i>Current level: </i>
@@ -90,9 +80,10 @@ export default function Dashboard() {
               </p>
               <h3>{level}</h3>
               <Box
+                m={10}
                 style={{
                   width: `${progress}%`,
-                  backgroundColor: "lightgray",
+                  backgroundColor: "darkgreen",
                 }}
                 p={1}
                 mt={0.5}
@@ -106,7 +97,7 @@ export default function Dashboard() {
         </Grid>
         <Grid item xs={12} sm={6}>
           {!change ? (
-            <Box ml={4}>
+            <Paper elevation={23} className={classes.paper}>
               <Button
                 variant="contained"
                 color="primary"
@@ -114,36 +105,62 @@ export default function Dashboard() {
               >
                 Change my information
               </Button>
-            </Box>
+            </Paper>
           ) : (
-            <Box ml={4}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => setChange(false)}
-              >
-                I'm done changing my information
-              </Button>
-            </Box>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setChange(false)}
+            >
+              I'm done changing my information
+            </Button>
           )}
         </Grid>
         <Grid item xs={12} sm={2}>
           <Box mr={4}>
-            <Link to={`/triviaquiz`}>
-              <Button variant="contained" color="primary">
-                CS trivia quiz
-              </Button>
-            </Link>
+            <Tooltip
+              size="medium"
+              TransitionComponent={Fade}
+              TransitionProps={{ timeout: 600 }}
+              title={<h1>QUIZ</h1>}
+            >
+              <Box ml={1}>
+                <Button
+                  color="primary"
+                  arrow="true"
+                  size="medium"
+                  variant="contained"
+                  className={classes.button}
+                  component={NavLink}
+                  to="/triviaquiz"
+                >
+                  Computer science Quiz
+                </Button>
+              </Box>
+            </Tooltip>
           </Box>
         </Grid>
         <Grid item xs={12} sm={3}>
-          <Link to={`/codinggame`}>
-            <Box mr={4}>
-              <Button variant="contained" color="primary">
-                Test my coding skills
+          <Tooltip
+            size="medium"
+            TransitionComponent={Fade}
+            TransitionProps={{ timeout: 600 }}
+            title={<h1>Coding Game</h1>}
+          >
+            <Box ml={1}>
+              <Button
+                color="primary"
+                arrow="true"
+                size="medium"
+                variant="contained"
+                className={classes.button}
+                component={NavLink}
+                to="/codinggame"
+              >
+                Game
               </Button>
             </Box>
-          </Link>
+          </Tooltip>
         </Grid>
 
         {change ? (

@@ -27,10 +27,10 @@ export const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-      padding: theme.spacing(20),
+      padding: theme.spacing(5),
     },
     paper: {
-      padding: theme.spacing(20),
+      padding: theme.spacing(10),
       textAlign: "center",
     },
     buttonStart: {

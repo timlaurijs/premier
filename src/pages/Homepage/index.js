@@ -91,7 +91,7 @@ export default function Homepage() {
   }, []);
 
   return (
-    <Box mt={9} className={classes.root}>
+    <Box mt={4} className={classes.root}>
       <Grid container spacing={2}>
         <Grid item xs={12} s>
           <Paper elevation={23} className={classes.paper}>

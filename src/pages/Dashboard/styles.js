@@ -16,7 +16,7 @@ export const useStyles = makeStyles((theme) =>
       fontSize: 30,
     },
     paper: {
-      padding: theme.spacing(1),
+      padding: theme.spacing(15),
       textAlign: "center",
     },
   })
