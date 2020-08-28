@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectToken } from "../store/user/selectors";
 import { useHistory } from "react-router-dom";
 import { signUp } from "../store/user/actions";
-import { Box, Button, IconButton, makeStyles } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  IconButton,
+  makeStyles,
+  TextField,
+} from "@material-ui/core";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 // FireBase
@@ -17,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     display: "none",
+    margin: theme.spacing(3),
   },
 }));
 
@@ -87,8 +94,9 @@ const SignUp = () => {
 
   return (
     <Box
-      mt={10}
+      mt={20}
       style={{
+        padding: 20,
         fontSize: 25,
         display: "flex",
         flex: 1,
@@ -96,6 +104,7 @@ const SignUp = () => {
         justifyContent: "center",
       }}
     >
+      <h1>Signup</h1>
       <form
         onSubmit={formHandler}
         style={{
@@ -105,42 +114,46 @@ const SignUp = () => {
           marginTop: 30,
         }}
       >
-        <div style={{ display: "block" }}>
-          <label htmlFor="name"> Name </label>
-          <input
-            type="text"
-            onChange={(event) => setName(event.target.value)}
-            placeholder="name"
-            name="name"
-          ></input>
-        </div>
-        <div style={{ display: "block" }}>
-          <label htmlFor="name"> About you </label>
-          <input
-            type="textarea"
-            onChange={(event) => setDescription(event.target.value)}
-            placeholder="description"
-            name="description"
-          ></input>
-        </div>
-        <div style={{ display: "block" }}>
-          <label htmlFor="email"> Email </label>
-          <input
-            type="text"
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="email"
-            name="email"
-          ></input>
-        </div>
-        <div style={{ display: "block" }}>
-          <label htmlFor="password"> Password </label>
-          <input
-            type="password"
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="password"
-            name="password"
-          ></input>
-        </div>
+        <TextField
+          id="outlined-basic"
+          label="Name"
+          variant="outlined"
+          type="text"
+          onChange={(event) => setName(event.target.value)}
+          placeholder="name"
+          name="name"
+        ></TextField>
+
+        <TextField
+          type="password"
+          id="outlined-basic"
+          label="Description"
+          variant="outlined"
+          onChange={(event) => setDescription(event.target.value)}
+          placeholder="description"
+          name="description"
+        ></TextField>
+
+        <TextField
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          type="text"
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="email"
+          name="email"
+        ></TextField>
+
+        <TextField
+          type="password"
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          onChange={(event) => setPassword(event.target.value)}
+          placeholder="password"
+          name="password"
+        ></TextField>
+
         <input type="file" onChange={handleChange} style={{ marginTop: 10 }} />
         <img
           style={{ marginTop: 10 }}
