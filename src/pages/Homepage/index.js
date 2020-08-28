@@ -92,7 +92,7 @@ export default function Homepage() {
         <Grid item xs={12} s>
           <Paper elevation={23} className={classes.paper}>
             <h1 style={{ fontFamily: "Courier New" }}>
-              Welcome to Premier Coding!
+              Welcome to GGPush Coding!
             </h1>
             <h2>Who are we?</h2>
             <Button
@@ -179,8 +179,8 @@ export default function Homepage() {
             advice you to try out a couple of times first the challenges and see
             if you can figure it out, because that will prepare you for the real
             work world. Enjoy Premiers coding game and let us know on Twitter
-            how it went, so we can celebrate your success together! Happy
-            Premiers coding time from all of us.
+            how it went, so we can celebrate your success together! Happy GGpush
+            coding time from all of us.
           </p>
         </div>
       </Grid>
