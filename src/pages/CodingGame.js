@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 
 //
-import ExerciseCard from "../components/ExerciseCard";
+import ExerciseCard from "../components/ExerciseCard"
 
-import { CodingGame } from "../store/codinggame/actions";
-import { updateProgressUser } from "../store/user/actions";
-import { selectUser } from "../store/user/selectors";
-import { useDispatch, useSelector } from "react-redux";
-import { selectExercise } from "../store/codinggame/selector";
+import { CodingGame } from "../store/codinggame/actions"
+import { updateProgressUser } from "../store/user/actions"
+import { selectUser } from "../store/user/selectors"
+import { useDispatch, useSelector } from "react-redux"
+import { selectExercise } from "../store/codinggame/selector"
 import {
   Box,
   Grid,
@@ -15,8 +15,8 @@ import {
   Button,
   Typography,
   makeStyles,
-} from "@material-ui/core";
-import AnswerCard from "../components/AnswerCard";
+} from "@material-ui/core"
+import AnswerCard from "../components/AnswerCard"
 
 export const useStyles = makeStyles({
   buttonStart: {
@@ -30,53 +30,53 @@ export const useStyles = makeStyles({
       background: "#397D02",
     },
   },
-});
+})
 
 export default function CodingExercises() {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const [questions, setQuestions] = useState([]);
-  const [number, setNumber] = useState(0);
-  const [score, setScore] = useState(0);
-  const [gameOver, setGameOver] = useState(true);
-  const [userAnswers, setUserAnswers] = useState([]);
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const [questions, setQuestions] = useState([])
+  const [number, setNumber] = useState(0)
+  const [score, setScore] = useState(0)
+  const [gameOver, setGameOver] = useState(true)
+  const [userAnswers, setUserAnswers] = useState([])
 
-  const loggedinUser = useSelector(selectUser);
-  const exercises = useSelector(selectExercise);
-  const TOTAL_QUESTIONS = exercises.length;
+  const loggedinUser = useSelector(selectUser)
+  const exercises = useSelector(selectExercise)
+  const TOTAL_QUESTIONS = exercises.length
 
   const upLiftedScore = (increment) => {
-    setScore((prev) => prev + increment);
-  };
+    setScore((prev) => prev + increment)
+  }
 
   useEffect(() => {
-    dispatch(CodingGame());
-  }, [dispatch]);
+    dispatch(CodingGame())
+  }, [dispatch])
 
   const startGame = async () => {
-    setGameOver(false);
-    setQuestions(exercises);
-    setScore(0);
-    setUserAnswers([]);
-    setNumber(0);
-  };
+    setGameOver(false)
+    setQuestions(exercises)
+    setScore(0)
+    setUserAnswers([])
+    setNumber(0)
+  }
 
   const nextQuestion = () => {
-    const nextQ = number + 1;
+    const nextQ = number + 1
     if (nextQ === TOTAL_QUESTIONS) {
-      setGameOver(true);
+      setGameOver(true)
     } else {
-      dispatch(updateProgressUser(score, loggedinUser.id));
-      setNumber(nextQ);
+      dispatch(updateProgressUser(score, loggedinUser.id))
+      setNumber(nextQ)
     }
-  };
+  }
 
   const submitScore = () => {
-    setNumber(0);
-  };
+    setNumber(0)
+  }
 
   return (
-    <Box mt={10}>
+    <Box mt={10} overflow={"hidden"}>
       <Grid container spacing={10}>
         <Grid item xs={12} style={{ justifyContent: "center" }}>
           <Typography component="div">
@@ -153,5 +153,5 @@ export default function CodingExercises() {
         )}
       </Box>
     </Box>
-  );
+  )
 }
