@@ -88,7 +88,7 @@ export default function Homepage() {
       setInspirationalQuote({ ...inspirationalQuote, ...randomQuote });
     }
     fetchQuote();
-  }, [inspirationalQuote]);
+  }, []);
 
   return (
     <Box mt={9} className={classes.root}>
