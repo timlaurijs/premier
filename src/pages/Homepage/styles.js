@@ -9,6 +9,7 @@ export const useStyles = makeStyles((theme) =>
     paper: {
       padding: theme.spacing(1),
       textAlign: "center",
+      alignItems: "center",
     },
   })
 );

@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from "react"
-import { Switch, Route } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect, useState } from "react";
+import { Switch, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 //Pages
-import Homepage from "./pages/Homepage"
-import Dashboard from "./pages/Dashboard"
-import Login from "./pages/Login"
-import SignUp from "./pages/SignUp"
-import CodingGame from "./pages/CodingGame"
+import Homepage from "./pages/Homepage";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import CodingGame from "./pages/CodingGame";
 
-// Components
+
 import Navbar from "./components/Navbar"
 import Motivation from "./pages/Motivation"
 import TriviaQuiz from "./pages/TriviaQuiz"
 import MessageBox from "./components/MessageBox"
 
+
 // Mui components
-import { getUserWithStoredToken } from "./store/user/actions"
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
-import { Paper, CssBaseline, Container } from "@material-ui/core"
+import { getUserWithStoredToken } from "./store/user/actions";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { Paper, CssBaseline, Container } from "@material-ui/core";
 
 const lightTheme = createMuiTheme({
   palette: {
@@ -32,7 +33,7 @@ const lightTheme = createMuiTheme({
     },
     type: "light",
   },
-})
+});
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -46,15 +47,15 @@ const darkTheme = createMuiTheme({
     },
     type: "dark",
   },
-})
+});
 
 function App() {
-  const [darkMode, set_darkMode] = useState(false)
-  const dispatch = useDispatch()
+  const [darkMode, set_darkMode] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserWithStoredToken())
-  }, [dispatch])
+    dispatch(getUserWithStoredToken());
+  }, [dispatch]);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -73,7 +74,7 @@ function App() {
         </Switch>
       </Container>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;
