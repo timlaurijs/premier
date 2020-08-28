@@ -30,7 +30,7 @@ export const useStyles = makeStyles((theme) =>
       padding: theme.spacing(5),
     },
     paper: {
-      padding: theme.spacing(10),
+      padding: theme.spacing(5),
       textAlign: "center",
     },
     buttonStart: {

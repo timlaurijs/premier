@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
     margin: 2,
     color: "#ffffff",
     fontWeight: "bold",
-    backgroundColor: "#01095E",
+    backgroundColor: "#00688B",
 
     "&:hover": {
       color: "#000000",
-      backgroundColor: "#000000", // does not work with a backgound image set as a background
+      background: "#F7594A", // does not work with a backgound image set as a background
     },
   },
 }));
