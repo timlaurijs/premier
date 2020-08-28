@@ -147,10 +147,8 @@ export default function PremierFounder(props) {
             title={
               <React.Fragment>
                 <Typography color="inherit">Contact</Typography>
-                <p> email: </p>
-                <p> country of origin: </p>
-                <p> Languages: </p>
-                <p> country of residence: </p>
+                <p> email: {props.email}</p>
+                <p> LinkedIn: {props.linkedIn} </p>
               </React.Fragment>
             }
           >
