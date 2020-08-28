@@ -9,10 +9,12 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import CodingGame from "./pages/CodingGame";
 
-// Components
-import Navbar from "./components/Navbar";
-import Motivation from "./pages/Motivation";
-import TriviaQuiz from "./pages/TriviaQuiz";
+
+import Navbar from "./components/Navbar"
+import Motivation from "./pages/Motivation"
+import TriviaQuiz from "./pages/TriviaQuiz"
+import MessageBox from "./components/MessageBox"
+
 
 // Mui components
 import { getUserWithStoredToken } from "./store/user/actions";
@@ -59,6 +61,7 @@ function App() {
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container disableGutters={true} maxWidth="xl">
         <CssBaseline />
+        <MessageBox />
         <Navbar darkMode={darkMode} set_darkMode={set_darkMode} />
         <Switch>
           <Route exact path="/codinggame" component={CodingGame} />
