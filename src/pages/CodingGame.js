@@ -126,14 +126,17 @@ export default function CodingExercises() {
 
   return (
     <Box mt={10} className={classes.root}>
-      <Grid item xs={12} s>
-        <Button
-          color="primary"
-          variant="contained"
-          onClick={handleClick(TransitionDown)}
-        >
-          Get motivated
-        </Button>
+      <Grid item xs={12}>
+        <Paper elevation={23} className={classes.paper}>
+          <h1> Welcome to GGPush Coding!</h1>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={handleClick(TransitionDown)}
+          >
+            Got Stuck ???
+          </Button>
+        </Paper>
       </Grid>
 
       <Grid item xs={12}>
