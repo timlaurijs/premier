@@ -14,6 +14,7 @@ const premierFounders = [
     gitUrl: "https://github.com/mayallzObject",
     email: "goranbre@abv.bg",
     linkedIn: "unknown",
+    aboutMe: "Float like a butterfly, sting like a bee.",
   },
 
   {
@@ -24,6 +25,7 @@ const premierFounders = [
     gitUrl: "https://github.com/Karem1986",
     email: "karem.ortiz@outlook.com",
     linkedIn: "https://www.linkedin.com/in/karemortiz/",
+    aboutMe: "When not coding, dancing salsa and eating ice cream.",
   },
   {
     name: "Tim",
@@ -31,8 +33,9 @@ const premierFounders = [
     imageUrl:
       "https://avatars0.githubusercontent.com/u/65892566?s=400&u=e2fc9b1339cf9f3d535a62948b6e5281fcb9a287&v=4",
     gitUrl: "https://github.com/timlaurijs",
-    email: "",
-    linkedIn: "",
+    email: "timlaurijs@gmail.com",
+    linkedIn: "https://www.linkedin.com/in/tim-laurijs-b3b6561a8/",
+    aboutMe: "I like making music, videos, and art in general.",
   },
 
   {
@@ -43,6 +46,7 @@ const premierFounders = [
     gitUrl: "https://github.com/grakify90",
     email: "ninavanes1990@hotmail.com",
     linkedIn: "https://www.linkedin.com/in/ninavanes/",
+    aboutMe: "I love it when you call me big pupper🎵",
   },
 ];
 
@@ -84,7 +88,7 @@ export default function Homepage() {
       setInspirationalQuote({ ...inspirationalQuote, ...randomQuote });
     }
     fetchQuote();
-  }, []);
+  }, [inspirationalQuote]);
 
   return (
     <Box mt={9} className={classes.root}>
@@ -136,6 +140,7 @@ export default function Homepage() {
                 gitUrl={founder.gitUrl}
                 email={founder.email}
                 linkedIn={founder.linkedIn}
+                aboutMe={founder.aboutMe}
               />
             </Grid>
           );
