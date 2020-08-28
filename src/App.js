@@ -13,6 +13,7 @@ import CodingGame from "./pages/CodingGame"
 import Navbar from "./components/Navbar"
 import Motivation from "./pages/Motivation"
 import TriviaQuiz from "./pages/TriviaQuiz"
+import MessageBox from "./components/MessageBox"
 
 // Mui components
 import { getUserWithStoredToken } from "./store/user/actions"
@@ -59,6 +60,7 @@ function App() {
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container disableGutters={true} maxWidth="xl">
         <CssBaseline />
+        <MessageBox />
         <Navbar darkMode={darkMode} set_darkMode={set_darkMode} />
         <Switch>
           <Route exact path="/codinggame" component={CodingGame} />
