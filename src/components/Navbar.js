@@ -1,11 +1,11 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import logo from "../assets/logo.svg";
+import React from "react"
+import { NavLink } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import logo from "../assets/logo.svg"
 // store items
-import { selectUser } from "../store/user/selectors";
-import { logOut } from "../store/user/actions";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
+import { selectUser } from "../store/user/selectors"
+import { logOut } from "../store/user/actions"
+import Brightness4Icon from "@material-ui/icons/Brightness4"
 
 // Material-ui components and icons
 import {
@@ -19,11 +19,11 @@ import {
   Fade,
   Avatar,
   Paper,
-} from "@material-ui/core";
-import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp";
-import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded";
-import RowingIcon from "@material-ui/icons/Rowing";
-import Brightness7Icon from "@material-ui/icons/Brightness7";
+} from "@material-ui/core"
+import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp"
+import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded"
+import RowingIcon from "@material-ui/icons/Rowing"
+import Brightness7Icon from "@material-ui/icons/Brightness7"
 
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
@@ -39,12 +39,12 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#000000", // does not work with a backgound image set as a background
     },
   },
-}));
+}))
 
 export default function Navbar(props) {
-  const classes = useStyles(); // material ui classes
-  const { imageUrl, token, name } = useSelector(selectUser);
-  const dispatch = useDispatch();
+  const classes = useStyles() // material ui classes
+  const { imageUrl, token, name } = useSelector(selectUser)
+  const dispatch = useDispatch()
 
   function darkModeButton() {
     if (props.darkMode) {
@@ -57,7 +57,7 @@ export default function Navbar(props) {
         >
           <Brightness7Icon fontSize="large" />
         </IconButton>
-      );
+      )
     } else {
       return (
         <IconButton
@@ -68,7 +68,7 @@ export default function Navbar(props) {
         >
           <Brightness4Icon fontSize="large" />
         </IconButton>
-      );
+      )
     }
   }
 
@@ -80,7 +80,7 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="DASHBOARD"
       >
-        <Box ml={140}>
+        <Box ml={6}>
           <Button
             size="small"
             variant="contained"
@@ -154,13 +154,12 @@ export default function Navbar(props) {
         </Box>
       </Tooltip>
     </>
-  );
+  )
 
   return (
     <AppBar elevation={23}>
       <Toolbar>
         <img src={logo} style={{ height: 60 }} alt="logo"></img>
-        {/* Tooltip can display the button name */}
         <Tooltip
           size="medium"
           TransitionComponent={Fade}
@@ -219,5 +218,5 @@ export default function Navbar(props) {
         {loginLogoutControls}
       </Toolbar>
     </AppBar>
-  );
+  )
 }
