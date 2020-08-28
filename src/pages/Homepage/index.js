@@ -82,7 +82,9 @@ export default function Homepage() {
       <Grid container spacing={2}>
         <Grid item xs={12} s>
           <Paper elevation={23} className={classes.paper}>
-            <h1>Welcome to Premier Coding!</h1>
+            <h1 style={{ fontFamily: "Courier New" }}>
+              Welcome to Premier Coding!
+            </h1>
             <h2>Who are we?</h2>
             <Button
               // className={classes.paper}
