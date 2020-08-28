@@ -24,10 +24,7 @@ import FaceIcon from "@material-ui/icons/Face";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      maxWidth: 430,
-      maxHigh: 630,
-    },
+    root: {},
     media: {
       paddingTop: "56.25%", // 16:9
       minHeight: 400,
