@@ -93,13 +93,12 @@ export default function PremierFounder(props) {
           action={
             <Tooltip
               color="primary"
-              arrow="true"
               size="medium"
               TransitionComponent={Fade}
               TransitionProps={{ timeout: 600 }}
               title={<h2>{`Go to ${props.name}'s GitHub `}</h2>}
             >
-              <Link href={props.gitUrl} target="_blank" isExternal>
+              <Link href={props.gitUrl} target="_blank">
                 <Button
                   variant="contained"
                   color="primary"

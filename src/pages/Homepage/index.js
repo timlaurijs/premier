@@ -93,7 +93,7 @@ export default function Homepage() {
   return (
     <Box mt={4} className={classes.root}>
       <Grid container spacing={2}>
-        <Grid item xs={12} s>
+        <Grid item xs={12}>
           <Paper elevation={23} className={classes.paper}>
             <h1 style={{ fontFamily: "Courier New" }}>
               Welcome to GGPush Coding!
