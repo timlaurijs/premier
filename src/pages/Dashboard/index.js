@@ -1,58 +1,58 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { useSelector } from "react-redux"
+import { Link, NavLink } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 //store items
-import { selectUser } from "../../store/user/selectors";
+import { selectUser } from "../../store/user/selectors"
 
 //components
-import ChangeUserData from "../../components/ChangeUserData";
+import ChangeUserData from "../../components/ChangeUserData"
 
 //material ui
-import { Button, Box, Grid, Paper, Fade, Tooltip } from "@material-ui/core";
-import { useStyles } from "./styles.js";
+import { Button, Box, Grid, Paper, Fade, Tooltip } from "@material-ui/core"
+import { useStyles } from "./styles.js"
 
 export default function Dashboard() {
   // const { token, name, progress } = useSelector(selectUser);
 
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const user = useSelector(selectUser);
-  const token = user.token;
-  const [change, setChange] = useState(false);
-  const progress = user.progress;
-  const [level, setLevel] = useState("amoebe");
+  const user = useSelector(selectUser)
+  const token = user.token
+  const [change, setChange] = useState(false)
+  const progress = user.progress
+  const [level, setLevel] = useState("amoebe")
 
-  const history = useHistory();
+  const history = useHistory()
 
   useEffect(() => {
     if (token === null) {
-      history.push("/login");
-      console.log("I push to");
+      history.push("/login")
+      console.log("I push to")
     }
-  }, [token, history]);
+  }, [token, history])
 
   useEffect(() => {
     if (progress > 5 && progress <= 10) {
-      setLevel("bumblebee");
+      setLevel("bumblebee")
     } else if (progress > 10 && progress <= 15) {
-      setLevel("hamster");
+      setLevel("hamster")
     } else if (progress > 15 && progress <= 20) {
-      setLevel("chihuahua");
+      setLevel("chihuahua")
     } else if (progress > 20 && progress <= 30) {
-      setLevel("boar");
+      setLevel("boar")
     } else if (progress > 30 && progress <= 50) {
-      setLevel("tiger");
+      setLevel("tiger")
     } else if (progress > 50 && progress <= 75) {
-      setLevel("elephant");
+      setLevel("elephant")
     } else if (progress > 75) {
-      setLevel("mammoth");
+      setLevel("mammoth")
     }
-  });
+  })
 
   return (
-    <Box mt={10} className={classes.paper}>
+    <Box mt={10} className={classes.paper} overflow={"hidden"}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12}>
           <Box className={classes.pageTitle}>
@@ -172,7 +172,7 @@ export default function Dashboard() {
         ) : null}
       </Grid>
     </Box>
-  );
+  )
 }
 
 /*
