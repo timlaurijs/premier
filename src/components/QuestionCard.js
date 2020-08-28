@@ -25,16 +25,16 @@ export const useStyles = makeStyles({
     alignItems: "center",
   },
   content: {
-    marginTop: 20,
-    fontSize: 30,
+    marginTop: 10,
+    fontSize: 20,
     padding: 10,
     fontWeight: "bold",
   },
 
   button: {
     borderRadius: 150,
-    fontSize: 15,
-    minWidth: 250,
+    fontSize: 10,
+    minWidth: 150,
     margin: 10,
     padding: 15,
     fontWeight: "bold",
