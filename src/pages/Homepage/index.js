@@ -178,9 +178,9 @@ export default function Homepage() {
             we are here for you to help you and guide you, but we strongly
             advice you to try out a couple of times first the challenges and see
             if you can figure it out, because that will prepare you for the real
-            work world. Enjoy Premiers coding game and let us know on Twitter
-            how it went, so we can celebrate your success together! Happy GGpush
-            coding time from all of us.
+            work world. Enjoy your coding game and let us know on Twitter how it
+            went, so we can celebrate your success together! Happy GGpush coding
+            time from all of us.
           </p>
         </div>
       </Grid>
