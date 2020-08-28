@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 
-//
-import ExerciseCard from "../components/ExerciseCard"
+import { API_URL_QUOTES } from "../constants/constants";
+import axios from "axios";
+import ExerciseCard from "../components/ExerciseCard";
 
-import { CodingGame } from "../store/codinggame/actions"
-import { updateProgressUser } from "../store/user/actions"
-import { selectUser } from "../store/user/selectors"
-import { useDispatch, useSelector } from "react-redux"
-import { selectExercise } from "../store/codinggame/selector"
+import { CodingGame } from "../store/codinggame/actions";
+import { updateProgressUser } from "../store/user/actions";
+import { selectUser } from "../store/user/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { selectExercise } from "../store/codinggame/selector";
 import {
   Box,
   Grid,
@@ -15,8 +16,10 @@ import {
   Button,
   Typography,
   makeStyles,
-} from "@material-ui/core"
-import AnswerCard from "../components/AnswerCard"
+  Slide,
+  Snackbar,
+} from "@material-ui/core";
+import AnswerCard from "../components/AnswerCard";
 
 import { createStyles } from "@material-ui/core/styles";
 
@@ -41,57 +44,115 @@ export const useStyles = makeStyles((theme) =>
         background: "#397D02",
       },
     },
-
   })
 );
-
+function getRandomNumber(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min));
+}
+function TransitionDown(props) {
+  return <Slide {...props} direction="down" />;
+}
 
 export default function CodingExercises() {
-  const classes = useStyles()
-  const dispatch = useDispatch()
-  const [questions, setQuestions] = useState([])
-  const [number, setNumber] = useState(0)
-  const [score, setScore] = useState(0)
-  const [gameOver, setGameOver] = useState(true)
-  const [userAnswers, setUserAnswers] = useState([])
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const [questions, setQuestions] = useState([]);
+  const [number, setNumber] = useState(0);
+  const [score, setScore] = useState(0);
+  const [gameOver, setGameOver] = useState(true);
+  const [userAnswers, setUserAnswers] = useState([]);
 
-  const loggedinUser = useSelector(selectUser)
-  const exercises = useSelector(selectExercise)
-  const TOTAL_QUESTIONS = exercises.length
+  const loggedinUser = useSelector(selectUser);
+  const exercises = useSelector(selectExercise);
+  const TOTAL_QUESTIONS = exercises.length;
 
   const upLiftedScore = (increment) => {
-    setScore((prev) => prev + increment)
-  }
+    setScore((prev) => prev + increment);
+  };
+
+  //Motivational quotes
+  const [transition, setTransition] = React.useState(undefined);
+  const [open, setOpen] = React.useState(false);
+  const [inspirationalQuote, setInspirationalQuote] = useState({
+    text: "",
+    author: "",
+  });
+  const handleClick = (Transition) => () => {
+    setTransition(() => Transition);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
-    dispatch(CodingGame())
-  }, [dispatch])
+    async function fetchQuote() {
+      const data = await axios.get(API_URL_QUOTES);
+      const randomNumber = getRandomNumber(1, 1643);
+      const randomQuote = data.data[randomNumber];
+      setInspirationalQuote({ ...inspirationalQuote, ...randomQuote });
+    }
+    fetchQuote();
+  }, []);
+
+  useEffect(() => {
+    dispatch(CodingGame());
+  }, [dispatch]);
 
   const startGame = async () => {
-    setGameOver(false)
-    setQuestions(exercises)
-    setScore(0)
-    setUserAnswers([])
-    setNumber(0)
-  }
+    setGameOver(false);
+    setQuestions(exercises);
+    setScore(0);
+    setUserAnswers([]);
+    setNumber(0);
+  };
 
   const nextQuestion = () => {
-    const nextQ = number + 1
+    const nextQ = number + 1;
     if (nextQ === TOTAL_QUESTIONS) {
-      setGameOver(true)
+      setGameOver(true);
     } else {
-      dispatch(updateProgressUser(score, loggedinUser.id))
-      setNumber(nextQ)
+      dispatch(updateProgressUser(score, loggedinUser.id));
+      setNumber(nextQ);
     }
-  }
+  };
 
   const submitScore = () => {
-    setNumber(0)
-  }
+    setNumber(0);
+  };
 
   return (
-
     <Box mt={10} className={classes.root}>
+      <Button
+        color="primary"
+        variant="contained"
+        onClick={handleClick(TransitionDown)}
+      >
+        Get motivated
+      </Button>
+      <Grid item xs={12}>
+        <Snackbar
+          className={classes.paper}
+          style={{ fontSize: 100 }}
+          open={open}
+          onClose={handleClose}
+          TransitionComponent={transition}
+          message={
+            <Box>
+              <h1>{inspirationalQuote.text}</h1>
+              <div>
+                {inspirationalQuote.author ? (
+                  <p>- {inspirationalQuote.author}</p>
+                ) : null}
+              </div>
+            </Box>
+          }
+          key={transition ? transition.name : ""}
+        />
+      </Grid>
 
       <Grid container spacing={10}>
         <Grid item xs={12}>
@@ -100,15 +161,6 @@ export default function CodingExercises() {
               <div style={{ fontSize: 30, color: "red" }}> Score: {score}</div>
             ) : null}
           </Typography>
-          {/* <h1
-            style={{
-              maxWidth: 300,
-              fontSize: 25,
-              margin: 0,
-            }}
-          >
-            Level #1
-          </h1> */}
         </Grid>
       </Grid>
       {!gameOver && (
@@ -169,5 +221,5 @@ export default function CodingExercises() {
         )}
       </Box>
     </Box>
-  )
+  );
 }

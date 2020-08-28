@@ -62,6 +62,7 @@ export default function Homepage() {
 
   const [transition, setTransition] = React.useState(undefined);
 
+  //Motivational quotes
   const [inspirationalQuote, setInspirationalQuote] = useState({
     text: "",
     author: "",
@@ -95,7 +96,6 @@ export default function Homepage() {
             </h1>
             <h2>Who are we?</h2>
             <Button
-              // className={classes.paper}
               color="primary"
               variant="contained"
               onClick={handleClick(TransitionDown)}
