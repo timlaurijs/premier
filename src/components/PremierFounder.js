@@ -128,9 +128,7 @@ export default function PremierFounder(props) {
           title={props.name}
         />
         <CardContent>
-          <Typography paragraph>About me ...</Typography>
-          <Typography paragraph>Skills, stacks etc.</Typography>
-          <Typography paragraph>Brief personal info</Typography>
+          <Typography paragraph>About me: {props.aboutMe}</Typography>
         </CardContent>
         <CardActions spacing={5}>
           <Button
