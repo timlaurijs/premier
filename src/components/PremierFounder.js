@@ -146,11 +146,9 @@ export default function PremierFounder(props) {
           <HtmlTooltip
             title={
               <React.Fragment>
-                <Typography color="inherit">Conact</Typography>
-                <p> email: </p>
-                <p> country of origin: </p>
-                <p> Languages: </p>
-                <p> country of residence: </p>
+                <Typography color="inherit">Contact</Typography>
+                <p> email: {props.email}</p>
+                <p> LinkedIn: {props.linkedIn} </p>
               </React.Fragment>
             }
           >
