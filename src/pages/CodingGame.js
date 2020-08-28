@@ -18,19 +18,33 @@ import {
 } from "@material-ui/core"
 import AnswerCard from "../components/AnswerCard"
 
-export const useStyles = makeStyles({
-  buttonStart: {
-    borderRadius: 100,
-    fontSize: 15,
-    backgroundColor: "#629632",
-    margin: 10,
-    fontWeight: "bold",
-    "&:hover": {
-      color: "yellow",
-      background: "#397D02",
+import { createStyles } from "@material-ui/core/styles";
+
+export const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+      padding: theme.spacing(20),
     },
-  },
-})
+    paper: {
+      padding: theme.spacing(20),
+      textAlign: "center",
+    },
+    buttonStart: {
+      borderRadius: 100,
+      fontSize: 10,
+      backgroundColor: "#629632",
+      margin: 10,
+      fontWeight: "bold",
+      "&:hover": {
+        color: "yellow",
+        background: "#397D02",
+      },
+    },
+
+  })
+);
+
 
 export default function CodingExercises() {
   const classes = useStyles()
@@ -76,9 +90,11 @@ export default function CodingExercises() {
   }
 
   return (
-    <Box mt={10} overflow={"hidden"}>
+
+    <Box mt={10} className={classes.root}>
+
       <Grid container spacing={10}>
-        <Grid item xs={12} style={{ justifyContent: "center" }}>
+        <Grid item xs={12}>
           <Typography component="div">
             {!gameOver ? (
               <div style={{ fontSize: 30, color: "red" }}> Score: {score}</div>

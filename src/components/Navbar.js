@@ -1,10 +1,10 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
-import logo from "../assets/logo.svg"
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import logo from "../assets/logo.svg";
 // store items
-import { selectUser } from "../store/user/selectors"
-import { logOut } from "../store/user/actions"
+import { selectUser } from "../store/user/selectors";
+import { logOut } from "../store/user/actions";
 
 // Material-ui components and icons
 import {
@@ -17,35 +17,32 @@ import {
   Tooltip,
   Fade,
   Avatar,
-
+  Paper,
 } from "@material-ui/core";
 import WbSunnySharpIcon from "@material-ui/icons/WbSunnySharp";
 import Brightness3RoundedIcon from "@material-ui/icons/Brightness3Rounded";
 import RowingIcon from "@material-ui/icons/Rowing";
 
-
 // useStyles used to over ride the button default props
 const useStyles = makeStyles((theme) => ({
   button: {
-    fontSize: 12,
+    fontSize: 10,
     margin: 2,
-    color: "white",
+    color: "#ffffff",
     fontWeight: "bold",
     backgroundColor: "#01095E",
-    // backgroundImage:
-    //   "url(https://cdn.wccftech.com/wp-content/uploads/2016/09/spacee-740x463.jpg)",
 
     "&:hover": {
-      // color: "#000000",
-      backgroundColor: "#010EAD", // does not work with a backgound image set as a background
+      color: "#000000",
+      backgroundColor: "#000000", // does not work with a backgound image set as a background
     },
   },
-}))
+}));
 
 export default function Navbar(props) {
-  const classes = useStyles() // material ui classes
-  const { imageUrl, token, name } = useSelector(selectUser)
-  const dispatch = useDispatch()
+  const classes = useStyles(); // material ui classes
+  const { imageUrl, token, name } = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   function darkModeButton() {
     if (props.darkMode) {
@@ -56,9 +53,9 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <WbSunnySharpIcon fontSize="small" />
+          <WbSunnySharpIcon fontSize="large" />
         </IconButton>
-      )
+      );
     } else {
       return (
         <IconButton
@@ -67,9 +64,9 @@ export default function Navbar(props) {
           color="inherit"
           aria-label="menu"
         >
-          <RowingIcon fontSize="small" />
+          <RowingIcon fontSize="large" />
         </IconButton>
-      )
+      );
     }
   }
 
@@ -81,7 +78,7 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="DASHBOARD"
       >
-        <Box ml={6}>
+        <Box ml={140}>
           <Button
             size="small"
             variant="contained"
@@ -99,20 +96,19 @@ export default function Navbar(props) {
         TransitionProps={{ timeout: 600 }}
         title="LOGOUT"
       >
-        <Box ml={1}>
-          <Button
-            size="small"
-            variant="contained"
-            className={classes.button}
-            onClick={() => dispatch(logOut())}
-          >
-            Log out
-          </Button>
-        </Box>
+        <Button
+          size="small"
+          variant="contained"
+          className={classes.button}
+          onClick={() => dispatch(logOut())}
+        >
+          Log out
+        </Button>
       </Tooltip>
+
       {imageUrl ? (
         <Avatar
-          style={{ height: 80, width: 80, marginLeft: 50 }}
+          style={{ padding: 1, height: 60, width: 60 }}
           src={imageUrl}
         ></Avatar>
       ) : null}
@@ -156,13 +152,12 @@ export default function Navbar(props) {
         </Box>
       </Tooltip>
     </>
-  )
+  );
 
   return (
-    <AppBar>
+    <AppBar elevation={23}>
       <Toolbar>
-        <img src={logo} style={{ height: 100, left: 0 }}></img>
-        <Box ml={3}>{darkModeButton()}</Box>
+        <img src={logo} style={{ height: 60 }} alt="logo"></img>
         {/* Tooltip can display the button name */}
         <Tooltip
           size="medium"
@@ -218,8 +213,9 @@ export default function Navbar(props) {
             </Button>
           </Box>
         </Tooltip>
+        <Box ml={3}>{darkModeButton()}</Box>
         {loginLogoutControls}
       </Toolbar>
     </AppBar>
-  )
+  );
 }

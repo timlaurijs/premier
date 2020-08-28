@@ -19,10 +19,10 @@ const codeMirrorOptions = {
 
 export const useStyles = makeStyles({
   buttonStart: {
-    borderRadius: 100,
-    fontSize: 15,
+    borderRadius: "100px",
+    fontSize: 13,
 
-    margin: 10,
+    margin: 3,
     fontWeight: "bold",
   },
 });
