@@ -84,10 +84,9 @@ const ChangeUserData = (props) => {
           <Paper elevation={23} className={classes.paper}>
             <TextField
               id="outlined-basic"
-              label="Name"
+              label={userName}
               variant="outlined"
               onChange={(event) => setName(event.target.value)}
-              placeholder={userName}
               name="name"
               required
             ></TextField>
@@ -97,11 +96,10 @@ const ChangeUserData = (props) => {
           <Paper elevation={23} className={classes.paper}>
             <TextField
               id="outlined-basic"
-              label="Desciption"
+              label={userDescription}
               variant="outlined"
               type="text"
               onChange={(event) => setDescription(event.target.value)}
-              placeholder={userDescription}
               name="description"
               required
             ></TextField>
@@ -111,7 +109,7 @@ const ChangeUserData = (props) => {
           <Paper elevation={23} className={classes.paper}>
             <TextField
               id="outlined-basic"
-              label="Email"
+              label={userEmail}
               variant="outlined"
               onChange={(event) => setEmail(event.target.value)}
               placeholder={userEmail}
@@ -131,7 +129,7 @@ const ChangeUserData = (props) => {
               alt="firebaseimage"
             />
             <Paper elevation={23} className={classes.paper}>
-              <label htmlFor="email"></label>
+              <label htmlFor="email"> new avatar </label>
               <input type="file" onChange={handleChange} required />
               <Button variant="contained" color="primary" onClick={uploadImage}>
                 Upload
