@@ -1,8 +1,6 @@
 import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { selectMessage } from "../store/appState/selectors"
-import { Alert } from "react-bootstrap"
-// import { Alert } from "@material-ui/lab"
 
 import { clearMessage } from "../store/appState/actions"
 
@@ -13,13 +11,17 @@ export default function MessageBox() {
   if (!showMessage) return null
 
   console.log(message)
+
+  const messageColor = (type) => {
+    if (type === "danger") {
+      return "#F7594A"
+    } else {
+      return "#4D5BF7"
+    }
+  }
+  const variant = message.variant
   return (
-    <Alert
-      show={showMessage}
-      variant={message.variant}
-      class="alert alert-primary"
-      dismissible={message.dismissable}
-      onClose={message.dismissable ? () => dispatch(clearMessage()) : null}
+    <div
       style={{
         width: "40%",
         marginLeft: "30%",
@@ -30,28 +32,40 @@ export default function MessageBox() {
         position: "absolute",
         display: "inline",
         zIndex: 9999,
-        backgroundColor: "#AD0E00",
+        backgroundColor: messageColor(variant),
       }}
     >
-      {console.log("what happens?")}
-      <p style={{ display: "inline" }}>{message.text}</p>
-    </Alert>
+      <p>{message.text}</p>
+      {message.dismissable ? (
+        <button
+          onClick={message.dismissable ? () => dispatch(clearMessage()) : null}
+        >
+          Clear message
+        </button>
+      ) : null}
+    </div>
+
     // <Alert
     //   show={showMessage}
     //   variant={message.variant}
+    //   class="alert alert-primary"
     //   dismissible={message.dismissable}
     //   onClose={message.dismissable ? () => dispatch(clearMessage()) : null}
     //   style={{
-    //     width: 100,
-    //     marginLeft: "40%",
-    //     marginRight: "40%",
+    //     width: "40%",
+    //     marginLeft: "30%",
+    //     marginRight: "30%",
     //     marginTop: "20%",
-    //     fontSize: 50,
+    //     padding: 30,
+    //     fontSize: 30,
+    //     position: "absolute",
     //     display: "inline",
+    //     zIndex: 9999,
+    //     backgroundColor: "#AD0E00",
     //   }}
     // >
     //   {console.log("what happens?")}
-    //   {message.text}
+    //   <p style={{ display: "inline" }}>{message.text}</p>
     // </Alert>
   )
 }
