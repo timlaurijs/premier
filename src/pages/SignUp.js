@@ -9,8 +9,9 @@ import {
   IconButton,
   makeStyles,
   TextField,
+  Grid,
+  Paper,
 } from "@material-ui/core";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 // FireBase
 import { storage } from "../Firebase";
@@ -18,12 +19,17 @@ import { storage } from "../Firebase";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1),
+      margin: theme.spacing(10),
     },
   },
   input: {
     display: "none",
-    margin: theme.spacing(3),
+    margin: theme.spacing(5),
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: "center",
+    alignItems: "center",
   },
 }));
 
@@ -93,86 +99,73 @@ const SignUp = () => {
   };
 
   return (
-    <Box
-      mt={20}
-      style={{
-        padding: 20,
-        fontSize: 25,
-        display: "flex",
-        flex: 1,
-        // flexDirection: "column",
-        justifyContent: "center",
-      }}
-    >
-      <h1>Signup</h1>
-      <form
-        onSubmit={formHandler}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          marginTop: 30,
-        }}
-      >
-        <TextField
-          id="outlined-basic"
-          label="Name"
-          variant="outlined"
-          type="text"
-          onChange={(event) => setName(event.target.value)}
-          placeholder="name"
-          name="name"
-        ></TextField>
+    <Box mt={10}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={12}>
+          <Paper elevation={23} className={classes.paper}>
+            <h1> Welcome to GGPush Coding!</h1>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Paper elevation={23} className={classes.paper}>
+            <h1>Signup</h1>
+            <form onSubmit={formHandler}>
+              <TextField
+                id="outlined-basic"
+                label="Name"
+                variant="outlined"
+                type="text"
+                onChange={(event) => setName(event.target.value)}
+                placeholder="name"
+                name="name"
+              ></TextField>
 
-        <TextField
-          type="password"
-          id="outlined-basic"
-          label="Description"
-          variant="outlined"
-          onChange={(event) => setDescription(event.target.value)}
-          placeholder="description"
-          name="description"
-        ></TextField>
+              <TextField
+                type="password"
+                id="outlined-basic"
+                label="Description"
+                variant="outlined"
+                onChange={(event) => setDescription(event.target.value)}
+                placeholder="description"
+                name="description"
+              ></TextField>
 
-        <TextField
-          id="outlined-basic"
-          label="Email"
-          variant="outlined"
-          type="text"
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="email"
-          name="email"
-        ></TextField>
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                type="text"
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="email"
+                name="email"
+              ></TextField>
 
-        <TextField
-          type="password"
-          id="outlined-basic"
-          label="Password"
-          variant="outlined"
-          onChange={(event) => setPassword(event.target.value)}
-          placeholder="password"
-          name="password"
-        ></TextField>
+              <TextField
+                type="password"
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="password"
+                name="password"
+              ></TextField>
+              <Button variant="contained" color="primary" type="submit">
+                Submit
+              </Button>
+              <Button type="button" onClick={uploadImage}>
+                Upload
+              </Button>
 
-        <input type="file" onChange={handleChange} style={{ marginTop: 10 }} />
-        <img
-          style={{ marginTop: 10 }}
-          src={url || "http://via.placeholder.com/300"}
-          alt="firebaseimage"
-          style={{ width: "300px" }}
-        />
-        <button type="button" onClick={uploadImage} style={{ marginTop: 10 }}>
-          Upload
-        </button>
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          style={{ marginTop: 10 }}
-        >
-          Submit
-        </Button>
-      </form>
+              <input type="file" onChange={handleChange} />
+              <img
+                src={url || "http://via.placeholder.com/300"}
+                alt="firebaseimage"
+                style={{ width: "300px" }}
+              />
+            </form>
+          </Paper>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
